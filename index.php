@@ -13,13 +13,5 @@
     <h1>FREDI : Le site de l'avenir du sport</h1>
 
     <!--ajouter des images ou d'autres choses-->
-    <?php
-    if (isset($_SESSION['id_util'])) {
-        echo "connecté <br><br>  ";
-        echo "<a href='confirm_déconnexion.php'>déconnexion</a> <br><br>  ";
-    }else{
-        echo "<a href='connexion.php'>connexion <br><br>  </a>";
-    }
-    ?>
 </body>
 </html>
