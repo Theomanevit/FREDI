@@ -68,9 +68,9 @@ CREATE TABLE utilisateur(
 CREATE TABLE adherant(
         id_adherant Int  Auto_increment  NOT NULL ,
         num_licence Int NOT NULL ,
-        adresse1_ad Varchar (150) NOT NULL ,
-        adresse2_ad Varchar (150) NOT NULL ,
-        adresse3_ad Varchar (150) NOT NULL ,
+        adresse Varchar (150) NOT NULL ,
+        ville Varchar (150) NOT NULL ,
+        cp Varchar (150) NOT NULL ,
         id_club     Int NOT NULL ,
         id_util     Int NOT NULL
 	,CONSTRAINT adherant_PK PRIMARY KEY (id_adherant)
