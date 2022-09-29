@@ -50,7 +50,7 @@ CREATE TABLE periodeFiscale(
 CREATE TABLE utilisateur(
         id_util       Int  Auto_increment  NOT NULL ,
         pseudo_util   Varchar (50) NOT NULL ,
-        mdp_util      Varchar (50) NOT NULL ,
+        mdp_util      Varchar (255) NOT NULL ,
         nom_util      Varchar (50) NOT NULL ,
         prenom_util   Varchar (50) NOT NULL ,
         mail_util     Varchar (50) NOT NULL ,
