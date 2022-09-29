@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    /* session_start();
     require("backend/connectionBdd.php");
     
     $username = isset($_POST['username']) ? $_POST['username'] : '';
@@ -20,7 +20,7 @@
         }
         $_SESSION['username'] = $username;
         header("location : index.php");
-    }
+    } */
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -43,8 +43,8 @@
         print $mail;
         print $ligue;
         print $submit;
-        if(isset($_SESSION['username'])) {
-            echo '<p>Vous êtes connecté ' .$_SESSION['username']. '<.p>';
+        if(isset($_SESSION['pseudo_util'])) {
+            echo '<p>Vous êtes connecté ' .$_SESSION['pseudo_util']. '<.p>';
             echo '<p>Accéder à la page <a href="index.php"Page d\'Accueil</a></p>';
         } else {
     ?>
@@ -52,27 +52,54 @@
         <div class="field">
             <label class="label" for="pseudo">Pseudo</label>
             <div class="control">
-                <input class="input" type="text" id='pseudo' name='username' placeholder="Entrer votre identifiant" required>
+                <input class="input" type="text" id='pseudo-util' name='pseudo_util' placeholder="Entrer votre identifiant" required>
             </div>
         </div>
+
         <div>
             <label class="label" for="mdp">Mot de passe</label>
             <div class="control">
-                <input class="input" type="password" id='mdp' name='mdp_user' placeholder="Entrer un mot de passe" required>
+                <input class="input" type="password" id='mdp_util' name='mdp_util' placeholder="Entrer un mot de passe" required>
             </div>
         </div>
+
         <div>
             <label class="label" for="confirm_mdp">Confirmer mot de passe</label>
             <div class="control">
                 <input class="input" type="password" placeholder="Confirmer votre mot de passe" required>
             </div>
         </div>
+
         <div>
             <label class="label" for="mail">Mail</label>
             <div class="control">
-                <input class="input" type="email" id='email' name="mail" placeholder="Entrer votre mail" required>
+                <input class="input" type="email" id='mail_util' name="mail_util" placeholder="Entrer votre mail" required>
             </div>
         </div>
+
+
+        <!-- compléter correctement le menu club -->
+        <div>
+            <label class="label" for="club-select">Club</label>
+            <div class="select">
+                <select name="club" id="club-select" required>
+                    <option value="">Choisissez un club</option>
+                    <option value="athlétisme">Athlétisme</option>
+                    <option value="football">Football</option>
+                    <option value="escrime">Escrime</option>
+                    <option value="rugby">Rugby</option>
+                    <option value="volley">Volley</option>
+                </select>
+            </div>
+        </div>
+
+        <div>
+            <label class="label" for="num_licence">Numéro de licence</label>
+            <div class="control">
+                <input class="input" type="text" id='num_licence' name="num_licence" placeholder="Entrer votre numéro de licence" required>
+            </div>
+        </div>
+
         <div>
             <label class="label" for="ligue-select">Ligue</label>
             <div class="select">
@@ -86,6 +113,32 @@
                 </select>
             </div>
         </div>
+
+
+
+
+
+        <div>
+            <label class="label" for="num_rue">Numéro et rue</label>
+            <div class="control">
+                <input class="input" type="text" id='adresse' name="adresse" placeholder="Entrer votre numéro de rue et la rue" required>
+            </div>
+        </div>
+
+        <div>
+            <label class="label" for="cp">Code postal</label>
+            <div class="control">
+                <input class="input" type="text" id='cp' name="cp" placeholder="Entrer votre code postal" required>
+            </div>
+        </div>
+
+        <div>
+            <label class="label" for="vile">Ville</label>
+            <div class="control">
+                <input class="input" type="text" id='ville' name="ville" placeholder="Entrer votre ville" required>
+            </div>
+        </div>
+        
         <div>
             <a href="">Condition générale d'utilisation
                 <input type="checkbox" name="CGU" id="CGU_agree" required>
