@@ -7,6 +7,5 @@
     <title>inscription</title>
 </head>
 <body>
-    
 </body>
 </html>

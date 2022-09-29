@@ -1,17 +1,21 @@
+
+
+
 <header role="header">
     <nav class="menu" role="navigation">
-        <div class="inner">
+        <!--<div class="inner">
             <div class="m-left">
-                <a href="index.php" class="m-link">Accueil</a>
+                
             </div>
-            <div class="m-right">
+            <div class="m-right">-->
                 <?php
                 if(isset($_SESSION['username'])) {
-                    echo "<a href='#' class='m-link'>Mon compte</a>";
-                    echo "<a href='deconnexion.php' class='m-link'>Se déconnecter</a>";
+                    echo "<button><a href='#' >Mon compte</a></button>";
+                    echo "<button class='droite'><a href='deconnexion.php'>Se déconnecter</a></button>";
                 } else {
-                    echo "<a href='connexion.php' class='m-link'>Se connecter</a>";
-                    echo "<a href='inscription.php' class='m-link'>S'inscrire</a>";
+                    echo "<button><a href='index.php'>Accueil</a></button>";
+                    echo "<button class='droite'><a href='connexion.php'>Se connecter</a></button>";
+                    echo "<button class='droite'><a href='inscription.php'>S'inscrire</a></button>";
                 }
                 ?>
             </div>
