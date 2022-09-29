@@ -8,12 +8,7 @@
     <title>FREDI accueil</title>
 </head>
 <body>
-    <header>
-    <button onclick="window.location.href = 'index.php';">Accueil</button>
-    <button class="droite" onclick="window.location.href = 'connexion.php';">Connexion</button>
-    <button class="droite" onclick="window.location.href = 'inscription.php';">Inscription</button>
-
-    </header>
+    <?php include('header.php')?>
     <h1>FREDI : Le site de l'avenir du sport</h1>
 
     <!--ajouter des images ou d'autres choses-->
