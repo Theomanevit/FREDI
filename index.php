@@ -8,8 +8,7 @@
     <title>FREDI accueil</title>
 </head>
 <body>
-<?php include('header.php'); ?>
-
+    <?php include('header.php')?>
     <h1>FREDI : Le site de l'avenir du sport</h1>
 
     <!--ajouter des images ou d'autres choses-->
