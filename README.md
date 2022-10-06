@@ -3,13 +3,13 @@
 
 ## les comptes utilisateurs de test
 
-    utilisateur     mot de passe
-    test            test
-    test1           test1
-    test2           test2
+    utilisateur     mot de passe    adresse mail
+    test            test            test@gmail.com
+    test1           test1           test1@gmail.com
+    test2           test2           test2@gmail.com
 
 # installation 
-Décompresser le dossier FREDI dans le répertoire "xampp\htdocs\projets" puis créer la base de données fredi en utf8_general_ci dans mysql puis exécuter le script sql dans le fichier "fredi.sql".
+Décompresser le dossier FREDI dans le répertoire "xampp\htdocs\projets" puis exécuter le script sql dans le fichier "fredi.sql".
 
 ajouter les utilisateurs de test dans la base de donné grace à la commande suivante :
 
