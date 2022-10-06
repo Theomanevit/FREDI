@@ -4,7 +4,7 @@ session_start();
 $submit = isset($_POST['submit']);
 
 if ($submit) {
-    header("location: déconnexion.php");
+    header("location: deconnexion.php");
 }
 ?>
 
@@ -25,7 +25,7 @@ if ($submit) {
             <tr>
                 <td>
                     <h2>Voulez-vous vous déconecté ?</h2>
-                    <form action="confirm_déconnexion.php" method="POST">
+                    <form action="confirm_deconnexion.php" method="POST">
                         <button>
                             <a href="index.php">retour</a>
                         </button>
