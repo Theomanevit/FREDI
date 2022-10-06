@@ -1,26 +1,7 @@
 <?php
-    /* session_start();
+    session_start();
     require("backend/connectionBdd.php");
-    
-    $username = isset($_POST['username']) ? $_POST['username'] : '';
-    $password = isset($_POST['mdp_user']) ? $_POST['mdp_user'] : '';
-    $mail = isset($_POST['mail']) ? $_POST['mail'] : '';
-    $ligue = isset($_POST['ligue']) ? $_POST['ligue'] : '';
-    $submit = isset($_POST['submit']) ? $_POST['submit'] : '';
-
-    if($submit) {
-        $sql ="insert into utilisateur (pseudo_utilisateur, mdp_utilisateur, mail_utilisateur, idType, idLigue)
-         values (:pseudo, :mdp, :mail, 1, :ligue)";
-        try {
-            $sth = $dbh->prepare($sql);
-            $sth->execute(array(':pseudo' => $username, ':mdp' => $password, ':mail' => $mail, ':ligue' => $ligue));
-            $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
-        } catch(Exception $e) {
-            echo "<p>" .$e->getMessage(). "</p>";
-        }
-        $_SESSION['username'] = $username;
-        header("location : index.php");
-    } */
+    require("backend/inscription/insert_db.php");
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -29,7 +10,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="css/header.css">
     <title>Inscription</title>
 </head>
 <body>
@@ -38,17 +18,12 @@
     ?>
     <h1 class="title">Inscription</h1>
     <?php
-        print $username;
-        print $password;
-        print $mail;
-        print $ligue;
-        print $submit;
-        if(isset($_SESSION['pseudo_util'])) {
+        if(isset($_SESSION['id_util'])) {
             echo '<p>Vous êtes connecté ' .$_SESSION['pseudo_util']. '<.p>';
             echo '<p>Accéder à la page <a href="index.php"Page d\'Accueil</a></p>';
         } else {
     ?>
-    <form action="register.php">
+    <form action="inscription.php" method="post">
         <div class="field">
             <label class="label" for="pseudo">Pseudo</label>
             <div class="control">
@@ -57,6 +32,7 @@
         </div>
 
         <div>
+            <?php if(isset($messages)) { echo "<p>".$messages."</p>"; } ?>
             <label class="label" for="mdp">Mot de passe</label>
             <div class="control">
                 <input class="input" type="password" id='mdp_util' name='mdp_util' placeholder="Entrer un mot de passe" required>
@@ -84,11 +60,11 @@
             <div class="select">
                 <select name="club" id="club-select" required>
                     <option value="">Choisissez un club</option>
-                    <option value="athlétisme">Athlétisme</option>
-                    <option value="football">Football</option>
-                    <option value="escrime">Escrime</option>
-                    <option value="rugby">Rugby</option>
-                    <option value="volley">Volley</option>
+                    <option value="1">Athlétisme</option>
+                    <option value="2">Football</option>
+                    <option value="3">Escrime</option>
+                    <option value="4">Rugby</option>
+                    <option value="5">Volley</option>
                 </select>
             </div>
         </div>
@@ -101,27 +77,9 @@
         </div>
 
         <div>
-            <label class="label" for="ligue-select">Ligue</label>
-            <div class="select">
-                <select name="ligue" id="ligue-select" required>
-                    <option value="">Choisissez une ligue</option>
-                    <option value="athlétisme">Athlétisme</option>
-                    <option value="football">Football</option>
-                    <option value="escrime">Escrime</option>
-                    <option value="rugby">Rugby</option>
-                    <option value="volley">Volley</option>
-                </select>
-            </div>
-        </div>
-
-
-
-
-
-        <div>
             <label class="label" for="num_rue">Numéro et rue</label>
             <div class="control">
-                <input class="input" type="text" id='adresse' name="adresse" placeholder="Entrer votre numéro de rue et la rue" required>
+                <input class="input" type="text" id='adresse' name="num_rue" placeholder="Entrer votre numéro de rue et la rue" required>
             </div>
         </div>
 
