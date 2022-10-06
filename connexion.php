@@ -8,7 +8,7 @@ $tableau = pathinfo(__FILE__);
 $filename = $tableau['basename'];
 
 
-$dsn = 'mysql:host=localhost;dbname=fredi';
+$dsn = 'mysql:host=localhost;dbname=fredi21';
 $user = 'root';
 $password = '';
 

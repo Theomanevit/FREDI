@@ -49,15 +49,15 @@ CREATE TABLE periodeFiscale(
 #------------------------------------------------------------
 
 CREATE TABLE utilisateur(
-        id_util       Int  Auto_increment  NOT NULL ,
-        pseudo_util   Varchar (50) NOT NULL ,
-        mdp_util      Varchar (255) NOT NULL ,
-        nom_util      Varchar (50) NOT NULL ,
-        prenom_util   Varchar (50) NOT NULL ,
-        mail_util     Varchar (50) NOT NULL ,
-        is_controleur Bool NOT NULL ,
-        is_admin      Bool NOT NULL ,
-        is_adherant   Bool NOT NULL
+        id_util     Int  Auto_increment  NOT NULL ,
+        pseudo_util Varchar (50) NOT NULL ,
+        mdp_util    Varchar (255) NOT NULL ,
+        nom_util    Varchar (50) NOT NULL ,
+        prenom_util Varchar (50) NOT NULL ,
+        mail_util   Varchar (50) NOT NULL ,
+        type_util   Varchar (3) NOT NULL ,
+        iscontrol   Bool NOT NULL ,
+        isadmin     Bool NOT NULL
 	,CONSTRAINT utilisateur_PK PRIMARY KEY (id_util)
 )ENGINE=InnoDB;
 
@@ -71,7 +71,7 @@ CREATE TABLE adherant(
         num_licence Int NOT NULL ,
         adresse     Varchar (150) NOT NULL ,
         ville       Varchar (150) NOT NULL ,
-        cp          Varchar (150) NOT NULL ,
+        cp          Varchar (6) NOT NULL ,
         id_club     Int NOT NULL ,
         id_util     Int NOT NULL
 	,CONSTRAINT adherant_PK PRIMARY KEY (id_adherant)
