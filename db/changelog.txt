@@ -7,17 +7,10 @@
 
 - Toutes les colonnes de la base de données sont formées de cette façon :
     - Les colonnes ayant des mots composés prennent cette forme : "num_licence"
-    - Les colonnes BOOLEENNES sont sans "_" : "isvalid"
+    - Les colonnes BOOLEENNES sont sans "_" : "isvalid" sauf pour "isactive_fisc"
     - Il y a aucun accent (je préfère préciser on ne sait jamais avec l'ancienne qui était un peu bancale)
     - Les tables ont des MAJUSCULES quand ils sont composées de plusieurs mots mais pas la PREMIERE lettre, par exemple "periodeFiscale"
 
 - vous pouvez copier directement le script de la base de données dans la zone sql pour créer la base de données.
 
 - Les images ont été actualisées avec la base.
-
-
-
-
-Note perso : 
-
-- Faudra changer le varchar(150) de "cp" dans "adherant" en varchar(6) pour plus de cohérence.
