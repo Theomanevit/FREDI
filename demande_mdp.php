@@ -41,7 +41,7 @@ $submit = isset($_POST['submit']);
 $message = "";
 if ($submit) {
     try {
-        $sql = "select id_util from utilisateur where mail_util = :mail_util";
+        $sql = "select * from utilisateur where mail_util = :mail_util";
         $params = array(
             "mail_util" => $mail_util,
         );
@@ -72,9 +72,11 @@ if ($submit) {
         } catch (PDOException $e) {
             die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
         }
+        $file = fopen("files/new_password.txt", "w") or exit("<p>Impossible d'ouvrir le fichier</p>");
+        fwrite($file, $NEW_mdp_util);
         header('location: index.php');
     }
-} 
+}
 ?>
 
 
@@ -95,9 +97,9 @@ if ($submit) {
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <p>Adresse mail<br /><input type="text" name="mail_util" id="mail_util"></p>
         <p><input type="submit" name="submit" value="OK" />
-        <button>
-            <a href="index.php">retour</a>
-        </button>
+            <button>
+                <a href="index.php">retour</a>
+            </button>
         </p>
     </form>
 </body>
