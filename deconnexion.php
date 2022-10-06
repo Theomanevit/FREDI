@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+include("functions.php");
+// Récupère le nom du fichier PHP
+$tableau = pathinfo(__FILE__);
+$filename = $tableau['basename'];
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -12,6 +18,9 @@ session_start();
 </head>
 
 <body>
+    <?php
+    logToDisk($filename);
+    ?>
     <div>
         <table>
             <tr>

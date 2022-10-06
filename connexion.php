@@ -2,7 +2,13 @@
 
 session_start();
 
-$dsn = 'mysql:host=localhost;dbname=fredi';
+include("functions.php");
+// Récupère le nom du fichier PHP
+$tableau = pathinfo(__FILE__);
+$filename = $tableau['basename'];
+
+
+$dsn = 'mysql:host=localhost;dbname=fredi21';
 $user = 'root';
 $password = '';
 
@@ -53,13 +59,16 @@ if ($submit) {
                 $id_util = $row["id_util"];
             }
             $_SESSION["id_util"] = $id_util;
+
+            logToDisk($filename);
+
             header('location: index.php');
         }
-    } 
-    else {
+    } else {
         echo 'mot de passe invalide';
     }
 }
+
 ?>
 
 
@@ -81,9 +90,9 @@ if ($submit) {
         <p>mot de passe<br /><input type="password" name="mdp_util" id="mdp_util"></p>
         <a href="demande_mdp.php">demande mdp</a>
         <p><input type="submit" name="submit" value="OK" />
-        <button>
-            <a href="index.php">retour</a>
-        </button>
+            <button>
+                <a href="index.php">retour</a>
+            </button>
         </p>
     </form>
 </body>
