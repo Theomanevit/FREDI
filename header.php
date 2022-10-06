@@ -9,7 +9,7 @@
             </div>
             <div class="m-right">-->
                 <?php
-                if(isset($_SESSION['username'])) {
+                if(isset($_SESSION['id_util'])) {
                     echo "<button><a href='#' >Mon compte</a></button>";
                     echo "<button class='droite'><a href='deconnexion.php'>Se déconnecter</a></button>";
                 } else {

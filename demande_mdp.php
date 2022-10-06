@@ -1,4 +1,26 @@
 <?php
+function getrandomstring($length)
+{
+
+    global $template;
+    settype($template, "string");
+
+    $template = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%?!";
+    /* this line can include numbers or not */
+
+    settype($length, "integer");
+    settype($rndstring, "string");
+    settype($a, "integer");
+    settype($b, "integer");
+
+    for ($a = 0; $a <= $length; $a++) {
+        $b = rand(0, strlen($template) - 1);
+        $rndstring .= $template[$b];
+    }
+
+    return $rndstring;
+}
+
 
 session_start();
 
@@ -14,17 +36,14 @@ try {
 }
 
 
-$pseudo_util = isset($_POST['pseudo_util']) ? $_POST['pseudo_util'] : NULL;
-$mdp_util = isset($_POST['mdp_util']) ? $_POST['mdp_util'] : NULL;
+$mail_util = isset($_POST['mail_util']) ? $_POST['mail_util'] : NULL;
 $submit = isset($_POST['submit']);
 $message = "";
-
-
 if ($submit) {
     try {
-        $sql = "select mdp_util from utilisateur where pseudo_util = :pseudo_util";
+        $sql = "select id_util from utilisateur where mail_util = :mail_util";
         $params = array(
-            "pseudo_util" => $pseudo_util,
+            "mail_util" => $mail_util,
         );
         $sth = $dbh->prepare($sql);
         $sth->execute($params);
@@ -33,14 +52,19 @@ if ($submit) {
         die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
     }
     foreach ($rows as $row) {
-        $hash = $row["mdp_util"];
+        $id_util = $row["id_util"];
     }
-    if (password_verify($mdp_util, $hash)) {
+
+    if (isset($id_util)) {
+        $length = 8;
+        $NEW_mdp_util = getrandomstring($length);
+        $options = array('cost' => 11);
+        $hash = password_hash($NEW_mdp_util, PASSWORD_BCRYPT, $options);
         try {
-            $sql = "select id_util from utilisateur where pseudo_util = :pseudo_util and mdp_util = :mdp_util";
+            $sql = "update utilisateur set mdp_util= :mdp_util where id_util= :id_util";
             $params = array(
-                "pseudo_util" => $pseudo_util,
                 "mdp_util" => $hash,
+                "id_util" => $id_util
             );
             $sth = $dbh->prepare($sql);
             $sth->execute($params);
@@ -48,19 +72,11 @@ if ($submit) {
         } catch (PDOException $e) {
             die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
         }
-        if ($sth->rowCount()) {
-            $_SESSION["id_util"] = $id_util;
-            $_SESSION["mdp_util"] = $mdp_util;
-            foreach ($rows as $row) {
-                $id_util = $row["id_util"];
-            }
-            header('location: index.php');
-        }
-    } else {
-        echo 'mot de passe invalide';
+        header('location: index.php');
     }
-}
+} 
 ?>
+
 
 
 <!DOCTYPE html>
@@ -70,16 +86,14 @@ if ($submit) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>connexion</title>
+    <title>demande_mdp</title>
 </head>
 
 <body>
-    <h2>Connexion</h2>
+    <h2>demande d'un mot de passe</h2>
     </p>
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <p>Pseudo<br /><input type="text" name="pseudo_util" id="pseudo_util" value="<?= $pseudo_util ?>"></p>
-        <p>mot de passe<br /><input type="mdp_util" name="mdp_util" id="mdp_util"></p>
-        <a href="demande_mdp.php">demande mdp</a>
+        <p>Adresse mail<br /><input type="text" name="mail_util" id="mail_util"></p>
         <p><input type="submit" name="submit" value="OK" />
         <button>
             <a href="index.php">retour</a>
