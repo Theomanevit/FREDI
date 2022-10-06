@@ -37,26 +37,26 @@ if ($submit) {
     }
     if (password_verify($mdp_util, $hash)) {
         try {
-            $sql = "select id_util from utilisateur where pseudo_util = :pseudo_util and mdp_util = :mdp_util";
+            $sql = "select * from utilisateur where pseudo_util = :pseudo_util and mdp_util = :mdp_util";
             $params = array(
                 "pseudo_util" => $pseudo_util,
                 "mdp_util" => $hash,
             );
             $sth = $dbh->prepare($sql);
             $sth->execute($params);
-            $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+            $rows2 = $sth->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
         }
         if ($sth->rowCount()) {
-            $_SESSION["id_util"] = $id_util;
-            $_SESSION["mdp_util"] = $mdp_util;
-            foreach ($rows as $row) {
+            foreach ($rows2 as $row) {
                 $id_util = $row["id_util"];
             }
+            $_SESSION["id_util"] = $id_util;
             header('location: index.php');
         }
-    } else {
+    } 
+    else {
         echo 'mot de passe invalide';
     }
 }
@@ -78,7 +78,7 @@ if ($submit) {
     </p>
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <p>Pseudo<br /><input type="text" name="pseudo_util" id="pseudo_util" value="<?= $pseudo_util ?>"></p>
-        <p>mot de passe<br /><input type="mdp_util" name="mdp_util" id="mdp_util"></p>
+        <p>mot de passe<br /><input type="password" name="mdp_util" id="mdp_util"></p>
         <a href="demande_mdp.php">demande mdp</a>
         <p><input type="submit" name="submit" value="OK" />
         <button>
