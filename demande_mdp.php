@@ -24,7 +24,7 @@ function getrandomstring($length)
 
 session_start();
 
-$dsn = 'mysql:host=localhost;dbname=fredi';
+$dsn = 'mysql:host=localhost;dbname=fredi21';
 $user = 'root';
 $password = '';
 
