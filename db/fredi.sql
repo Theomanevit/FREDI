@@ -54,8 +54,7 @@ CREATE TABLE utilisateur(
         mdp_util    Varchar (255) NOT NULL ,
         nom_util    Varchar (50) NOT NULL ,
         prenom_util Varchar (50) NOT NULL ,
-        mail_util   Varchar (50) NOT NULL ,
-        type_util   Varchar (3) NOT NULL ,
+        mail_util   Varchar (100) NOT NULL ,
         iscontrol   Bool NOT NULL ,
         isadmin     Bool NOT NULL
 	,CONSTRAINT utilisateur_PK PRIMARY KEY (id_util)
