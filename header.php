@@ -16,6 +16,14 @@
                 echo '<span class="line -top"></span>';
                 echo '<span class="line -left"></span>';
                 echo '<span class="line -bottom"></span></a></section>';
+                if (isset($_SESSION['isadmin'])) {
+                    echo '<section class="portfolio-experiment droite"><a href="list_util.php">';
+                    echo '<span class="text">Liste utilisateur</span>';
+                    echo '<span class="line -right"></span>';
+                    echo '<span class="line -top"></span>';
+                    echo '<span class="line -left"></span>';
+                    echo '<span class="line -bottom"></span></a></section>';
+                }
             } else {
                 echo '<section class="portfolio-experiment gauche"><a href="index.php">';
                 echo '<span class="text">Accueil</span>';

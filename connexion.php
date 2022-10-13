@@ -57,6 +57,10 @@ if ($submit) {
         if ($sth->rowCount()) {
             foreach ($rows2 as $row) {
                 $id_util = $row["id_util"];
+                $isadmin = $row["isadmin"];
+            }
+            if($isadmin==1){
+                $_SESSION["isadmin"] = $isadmin;
             }
             $_SESSION["id_util"] = $id_util;
 
