@@ -61,7 +61,7 @@ if (count($rows)>0) {
       echo '<td>'.$row['Prenom_util'].'</td>';
       echo '<td>'.$row['Mail_util'].'</td>';
       echo '<td>'.$chaine.'</td>';
-      echo '<td><button><a href="attribution_roles.php?id='.$row['id_util'].'">modifier</a></button></td>';
+      echo '<td><button><a href="attribution_roles.php?id_util='.$row['id_util'].'">modifier</a></button></td>';
       echo "</tr>";
 
 }
