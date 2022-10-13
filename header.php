@@ -1,23 +1,44 @@
-
-
-
 <header role="header">
     <nav class="menu" role="navigation">
-        <!--<div class="inner">
-            <div class="m-left">
-                
-            </div>
-            <div class="m-right">-->
-                <?php
-                if(isset($_SESSION['id_util'])) {
-                    echo "<button><a href='#' >Mon compte</a></button>";
-                    echo "<button class='droite'><a href='confirm_deconnexion.php'>Se déconnecter</a></button>";
-                } else {
-                    echo "<button><a href='index.php'>Accueil</a></button>";
-                    echo "<button class='droite'><a href='connexion.php'>Se connecter</a></button>";
-                    echo "<button class='droite'><a href='inscription.php'>S'inscrire</a></button>";
-                }
-                ?>
-            </div>
+        <div class="botton">
+            <?php
+            if (isset($_SESSION['id_util'])) {
+                echo '<section class="portfolio-experiment gauche"><a href="index.php">';
+                echo '<span class="text">Accueil</span>';
+                echo '<span class="line -right"></span>';
+                echo '<span class="line -top"></span>';
+                echo '<span class="line -left"></span>';
+                echo '<span class="line -bottom"></span></a></section>';
+
+                echo '<section class="portfolio-experiment droite"><a href="confirm_deconnexion.php">';
+                echo '<span class="text">Déconnexion</span>';
+                echo '<span class="line -right"></span>';
+                echo '<span class="line -top"></span>';
+                echo '<span class="line -left"></span>';
+                echo '<span class="line -bottom"></span></a></section>';
+            } else {
+                echo '<section class="portfolio-experiment gauche"><a href="index.php">';
+                echo '<span class="text">Accueil</span>';
+                echo '<span class="line -right"></span>';
+                echo '<span class="line -top"></span>';
+                echo '<span class="line -left"></span>';
+                echo '<span class="line -bottom"></span></a></section>';
+
+                echo '<section class="portfolio-experiment droite"><a href="connexion.php">';
+                echo '<span class="text">Connexion</span>';
+                echo '<span class="line -right"></span>';
+                echo '<span class="line -top"></span>';
+                echo '<span class="line -left"></span>';
+                echo '<span class="line -bottom"></span></a></section>';
+
+                echo '<section class="portfolio-experiment droite"><a href="inscription.php">';
+                echo '<span class="text">Inscription</span>';
+                echo '<span class="line -right"></span>';
+                echo '<span class="line -top"></span>';
+                echo '<span class="line -left"></span>';
+                echo '<span class="line -bottom"></span></a></section>';
+            }
+            ?>
+        </div>
     </nav>
 </header>
