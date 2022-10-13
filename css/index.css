@@ -3,29 +3,27 @@
 }
 
 section {
-
     text-align: justify;
-
 }
 
 .gauche {
-
     float: left;
-
 }
 
 .droite {
-
     float: right;
-
 }
 
 .botton {
     padding-bottom: 100px;
 }
 
+header{
+    background-color: grey;
+}
+
 .portfolio-experiment a {
-    color: black;
+    color: white;
     padding: 0.7em calc(0.7em * 1.2);
     display: inline-block;
     border: 3px solid transparent;
