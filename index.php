@@ -13,7 +13,7 @@
 </head>
 <body>
     <?php include('header.php')?>
-    <h1>FREDI : Le site de l'avenir du sport</h1>
+    <h1 class="centre">FREDI : Le site de l'avenir du sport</h1>
 
     <!--ajouter des images ou d'autres choses-->
 </body>
