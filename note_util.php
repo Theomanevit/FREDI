@@ -44,7 +44,7 @@ try {
 <?php
 if (count($rows)>0) {
     echo '<table>';
-    echo '<tr><th>idantifiant note</th><th>frais total</th><th>date ordre</th><th>numero ordre</th></tr>';
+    echo '<tr><th>idantifiant note</th><th>frais total</th><th>date ordre</th><th>numero ordre</th><th></th></tr>';
     foreach ($rows as $row){
 
       echo '<tr>';
@@ -52,6 +52,7 @@ if (count($rows)>0) {
       echo '<td>'.$row['tot_nfrais'].'</td>';
       echo '<td>'.$row['date_ordre'].'</td>';
       echo '<td>'.$row['num_ordre'].'</td>';
+      echo '<td><button><a href="ligne_notes.php?id_nfrais='.$row['id_nfrais'].'">afficher ligne</a></button></td>';
       echo "</tr>";
 
 }
