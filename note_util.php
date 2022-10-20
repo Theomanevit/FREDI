@@ -10,7 +10,15 @@ $filename = $tableau['basename'];
 
 require("backend/connectionBdd.php");
 
-$sql = 'select id_util, Pseudo_util, Nom_util, Prenom_util, Mail_util, isadmin, iscontrol   from utilisateur';
+if (isset($_SESSION['iscontrol'])) {
+    $sql = 'select id_nfrais, tot_nfrais, date_ordre, num_ordre from notefrais where isvalid="1"'; 
+}
+if (isset($_SESSION['isadmin'])) {
+    header("location: index.php");
+}
+if (!isset($_SESSION['isadmin']) && !isset($_SESSION['iscontrol'])) {
+    $sql = 'select id_nfrais, tot_nfrais, date_ordre, num_ordre from notefrais, adherant where notefrais.id_adherant=adherant.id_adherant and adherant.id_util= '.$_SESSION["id_util"].' and isvalid="1"';
+}
 
 try {
     $sth = $dbh->prepare($sql);
@@ -28,31 +36,22 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Liste des utilisateurs</title>
+    <title>Liste des notes utilisateurs</title>
     <link rel="stylesheet" href="css/tableau.css">
 </head>
 <body>
-<h1>Liste des utilisateurs</h1>
+<h1>Liste des notes utilisateurs</h1>
 <?php
 if (count($rows)>0) {
     echo '<table>';
-    echo '<tr><th>pseudo</th><th>Nom</th><th>Prénom</th><th>adresse mail</th><th>role</th><th></th></tr>';
+    echo '<tr><th>idantifiant note</th><th>frais total</th><th>date ordre</th><th>numero ordre</th></tr>';
     foreach ($rows as $row){
-    $chaine='adhérant';
-    if ($row['isadmin']==1){
-        $chaine="administrateur";
-        }
-    if ($row['iscontrol']==1){
-        $chaine="controleur";
-        }
 
       echo '<tr>';
-      echo '<td>'.$row['Pseudo_util'].'</td>';
-      echo '<td>'.$row['Nom_util'].'</td>';
-      echo '<td>'.$row['Prenom_util'].'</td>';
-      echo '<td>'.$row['Mail_util'].'</td>';
-      echo '<td>'.$chaine.'</td>';
-      echo '<td><button><a href="attribution_roles.php?id_util='.$row['id_util'].'">modifier</a></button></td>';
+      echo '<td>'.$row['id_nfrais'].'</td>';
+      echo '<td>'.$row['tot_nfrais'].'</td>';
+      echo '<td>'.$row['date_ordre'].'</td>';
+      echo '<td>'.$row['num_ordre'].'</td>';
       echo "</tr>";
 
 }
