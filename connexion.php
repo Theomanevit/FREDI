@@ -58,9 +58,13 @@ if ($submit) {
             foreach ($rows2 as $row) {
                 $id_util = $row["id_util"];
                 $isadmin = $row["isadmin"];
+                $iscontrol = $row["iscontrol"];
             }
             if($isadmin==1){
                 $_SESSION["isadmin"] = $isadmin;
+            }
+            if($iscontrol==1){
+                $_SESSION["iscontrol"] = $iscontrol;
             }
             $_SESSION["id_util"] = $id_util;
 
