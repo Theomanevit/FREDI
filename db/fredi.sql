@@ -27,7 +27,7 @@ CREATE TABLE clubs(
         id_ligue     Int NOT NULL
 	,CONSTRAINT clubs_PK PRIMARY KEY (id_club)
 
-	,CONSTRAINT clubs_ligues_FK FOREIGN KEY (id_ligue) REFERENCES ligues(id_ligue)
+	,CONSTRAINT clubs_ligues_FK FOREIGN KEY (id_ligue) REFERENCES ligues(id_ligue) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
 
@@ -75,7 +75,7 @@ CREATE TABLE adherant(
         id_util     Int NOT NULL
 	,CONSTRAINT adherant_PK PRIMARY KEY (id_adherant)
 
-	,CONSTRAINT adherant_clubs_FK FOREIGN KEY (id_club) REFERENCES clubs(id_club)
+	,CONSTRAINT adherant_clubs_FK FOREIGN KEY (id_club) REFERENCES clubs(id_club) ON DELETE CASCADE
 	,CONSTRAINT adherant_utilisateur0_FK FOREIGN KEY (id_util) REFERENCES utilisateur(id_util)
 	,CONSTRAINT adherant_utilisateur_AK UNIQUE (id_util)
 )ENGINE=InnoDB;
