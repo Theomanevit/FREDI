@@ -10,7 +10,7 @@ require('backend/connectionBdd.php');
 
 $id_nfrais = isset($_GET['id_nfrais']) ? $_GET['id_nfrais'] : '';
 
-$sql = 'select date_deplace, lib_deplace, nb_km, frais_peage, frais_repas, frais_heber, lib_motif, total_lfrais from lignefrais, motifdeplacement where motifdeplacement.id_motif=lignefrais.id_motif and lignefrais.id_nfrais=:id_nfrais';
+$sql = 'select id_lfrais, date_deplace, lib_deplace, nb_km, frais_peage, frais_repas, frais_heber, lib_motif, total_lfrais from lignefrais, motifdeplacement where motifdeplacement.id_motif=lignefrais.id_motif and lignefrais.id_nfrais=:id_nfrais';
 
 try {
     $sth = $dbh->prepare($sql);
@@ -49,6 +49,8 @@ if (count($rows)>0) {
       echo '<td>'.$row['frais_repas'].'</td>';
       echo '<td>'.$row['frais_heber'].'</td>';
       echo '<td>'.$row['lib_motif'].'</td>';
+      echo '<td><a href="fomulaire_modif.php?id='.$row['id_lfrais'].'"> modifier<a></td>';
+      echo '<td><a href="fomulaire_suppr.php?id='.$row['id_lfrais'].'"> supprimer<a></td>';
       echo "</tr>";
 
 }
@@ -57,6 +59,7 @@ if (count($rows)>0) {
     echo "<p>Rien à afficher</p>";
 }
 ?>
+<p><a href="fomulaire_ajout.php"> ajouter une ligne de frais<a></p>
 
 </body>
 </html>
