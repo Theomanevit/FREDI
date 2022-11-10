@@ -309,7 +309,7 @@ h2 {
     display: none;
     position: fixed;
     left: 50%;
-    top: 50%;
+    top: 25%;
     transform: translate(-45%, 5%);
     border: 2px solid #666;
     z-index: 9;

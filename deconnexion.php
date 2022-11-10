@@ -19,17 +19,17 @@ $filename = $tableau['basename'];
 </head>
 
 <body>
-    <?php include('header.php') ?>
     <?php
     logToDisk($filename);
     ?>
-    <h1 class="centre">déconecté</h1>
     <?php
     if (isset($_SESSION['id_util'])) {
         $id_uti = $_SESSION['id_util'];
         session_unset();
         session_destroy();
         setcookie(session_name(), '', -1, '/');
+        include('header.php');
+        echo '<h1 class="centre">déconecté</h1>';
     }
     ?>
 </body>
