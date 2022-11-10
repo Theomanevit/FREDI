@@ -87,23 +87,37 @@ if ($submit) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/connexion.css">
     <title>connexion</title>
 </head>
 
 <body>
     <?php include('header.php') ?>
-    <h2>Connexion</h2>
-    </p>
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <p>Pseudo<br /><input type="text" name="pseudo_util" id="pseudo_util" value="<?= $pseudo_util ?>"></p>
-        <p>mot de passe<br /><input type="password" name="mdp_util" id="mdp_util"></p>
-        <a href="demande_mdp.php">demande mdp</a>
-        <p><input type="submit" name="submit" value="OK" />
-            <button>
-                <a href="index.php">retour</a>
-            </button>
-        </p>
-    </form>
+    <h1 class="centre">Connexion</h1>
+    <div class="formbg-outer">
+        <div class="formbg">
+            <div class="formbg-inner padding-horizontal--48">
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                    <div class="field padding-bottom--24">
+                        <label>Pseudo</label>
+                        <input type="text" name="pseudo_util" id="pseudo_util" value="<?= $pseudo_util ?>">
+                    </div>
+                    <div class="field padding-bottom--24">
+                        <div class="grid--50-50">
+                            <label>Mot de passe</label>
+                            <div class="reset-pass">
+                                <a href="demande_mdp.php">mot de passe oublié?</a>
+                            </div>
+                        </div>
+                        <input type="password" name="mdp_util" id="mdp_util">
+                    </div>
+                    <div class="field padding-bottom--24">
+                        <input type="submit" name="submit" value="Validée" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
