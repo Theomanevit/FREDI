@@ -50,8 +50,9 @@ if (count($rows)>0) {
       echo '<td>'.$row['frais_peage'].'</td>';
       echo '<td>'.$row['frais_repas'].'</td>';
       echo '<td>'.$row['frais_heber'].'</td>';
-      echo '<td></td>'; //ici lien modifier
-      echo '<td></td>'; //ici lien supprimer
+      echo '<td>'.$row['lib_motif'].'</td>';
+      echo '<td><a href="fomulaire_modif.php?id='.$row['id_lfrais'].'"> modifier<a></td>';
+      echo '<td><a href="fomulaire_suppr.php?id='.$row['id_lfrais'].'"> supprimer<a></td>';
       echo "</tr>";
 
 }
@@ -60,7 +61,7 @@ if (count($rows)>0) {
     echo "<p>Rien à afficher</p>";
 }
 ?>
-<a href="formulaire_ajout.php">Ajouter une ligne de frais
+<p><a href="fomulaire_ajout.php"> ajouter une ligne de frais<a></p>
 
 </body>
 </html>
