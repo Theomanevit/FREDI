@@ -28,7 +28,7 @@
     //Ligues
     if (($handle = fopen($csvFileLigues, "r")) !== false) {
         while (($data = fgetcsv($handle, 1000, ";")) !== false) {
-            $sql_insert_ligues = "insert into ligues values(".$data[0].", '".$data[1]."')";
+            $sql_insert_ligues = 'insert into ligues values('.$data[0].', "'.$data[1].'")';
             try {
                 //Insertion data of file csvFileLigues in database
                 $sth = $dbh->prepare($sql_insert_ligues);
@@ -42,7 +42,7 @@
     //Clubs
     if (($handle = fopen($csvFileClubs, "r")) !== false) {
         while (($data = fgetcsv($handle, 1000, ";")) !== false) {
-            $sql_insert_clubs = "insert into clubs values(".$data[0].", '".$data[1]."', '".$data[2]."', '".$data[3]."', '".$data[4]."', ".$data[5].")";
+            $sql_insert_clubs = 'insert into clubs values('.$data[0].', "'.$data[1].'", "'.$data[2].'", "'.$data[3].'", "'.$data[4].'", '.$data[5].')';
             try {
                 //Insertion data of file csvFileClubs in database
                 $sth = $dbh->prepare($sql_insert_clubs);
@@ -57,7 +57,7 @@
     //Motifs
     if (($handle = fopen($csvFileMotifs, "r")) !== false) {
         while (($data = fgetcsv($handle, 1000, ";")) !== false) {
-            $sql_insert_motifs = "insert into motifdeplacement values(".$data[0].", '".$data[1]."')";
+            $sql_insert_motifs = 'insert into motifdeplacement values('.$data[0].', "'.$data[1].'")';
             try {
                 //Insertion data of file csvFileMotifs in database
                 $sth = $dbh->prepare($sql_insert_motifs);
