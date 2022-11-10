@@ -296,7 +296,7 @@ h2 {
 
 
 
-
+/*            pop up      */
 
 
 .login-popup {
@@ -308,8 +308,8 @@ h2 {
 .form-popup {
     display: none;
     position: fixed;
-    left: 45%;
-    top: 5%;
+    left: 50%;
+    top: 50%;
     transform: translate(-45%, 5%);
     border: 2px solid #666;
     z-index: 9;
