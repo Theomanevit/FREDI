@@ -23,7 +23,7 @@ $filename = $tableau['basename'];
     <?php
     logToDisk($filename);
     ?>
-    <h1 class="centre">Déconnexion</h1>
+    <h1 class="centre">déconecté</h1>
     <?php
     if (isset($_SESSION['id_util'])) {
         $id_uti = $_SESSION['id_util'];
@@ -32,13 +32,6 @@ $filename = $tableau['basename'];
         setcookie(session_name(), '', -1, '/');
     }
     ?>
-    <div class="centre_div padding">
-            <h2>
-                <a href="index.php" class="btn">
-                    <span>Accueil</span>
-                </a>
-            </h2>
-        </div>
 </body>
 
 </html>
