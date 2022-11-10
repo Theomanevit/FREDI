@@ -33,3 +33,5 @@ if ($submit) {
     } else {
         echo "<p> Essayez encore ! </p>";
     }
+}
+?>
