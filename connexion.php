@@ -60,10 +60,10 @@ if ($submit) {
                 $isadmin = $row["isadmin"];
                 $iscontrol = $row["iscontrol"];
             }
-            if($isadmin==1){
+            if ($isadmin == 1) {
                 $_SESSION["isadmin"] = $isadmin;
             }
-            if($iscontrol==1){
+            if ($iscontrol == 1) {
                 $_SESSION["iscontrol"] = $iscontrol;
             }
             $_SESSION["id_util"] = $id_util;
@@ -91,6 +91,7 @@ if ($submit) {
 </head>
 
 <body>
+    <?php include('header.php') ?>
     <h2>Connexion</h2>
     </p>
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
