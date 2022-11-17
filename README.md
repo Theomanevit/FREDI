@@ -21,15 +21,15 @@ VALUES
 (3, 'test', '$2y$11$jfM1gOjNyCswau92JPwA2uDqKcR8fajn8mdtIHxY5C4HnREIxaYy2', 'test', 'test', 'test@gmail.com', 0, 0);
 
 # acces des utilisateur :
-l'adhérent a acces à :
+l'adhérent a accès à :
 - la liste de ses notes de frais 
 - le detail de ses notes de frais pour la période active et peut modifier ou supprimer des lignes de frais d'une note
 
-le controleur a acces à :
+le controleur a accès à :
 - la liste de toutes les notes de frais uniquement pour la péroiode active
 - il ne peut pas modifier ou supprimer des lignes de frais d'une note
 
-l' administrateur a acces à :
+l' administrateurs a accès à :
 - la liste des utilisateur 
 - peut modifier le rôle d'un utilisateur
 
