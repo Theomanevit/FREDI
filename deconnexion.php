@@ -28,8 +28,7 @@ $filename = $tableau['basename'];
         session_unset();
         session_destroy();
         setcookie(session_name(), '', -1, '/');
-        include('header.php');
-        echo '<h1 class="centre">déconecté</h1>';
+        header('location: index.php');
     }
     ?>
 </body>
