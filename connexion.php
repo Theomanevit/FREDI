@@ -73,7 +73,7 @@ if ($submit) {
             header('location: index.php');
         }
     } else {
-        echo 'mot de passe invalide';
+        echo '<h2 class="centre">mot de passe invalide</h2>';
     }
 }
 
@@ -100,7 +100,7 @@ if ($submit) {
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                     <div class="field padding-bottom--24">
                         <label>Pseudo</label>
-                        <input type="text" name="pseudo_util" id="pseudo_util" value="<?= $pseudo_util ?>">
+                        <input type="text" name="pseudo_util" id="pseudo_util" require>
                     </div>
                     <div class="field padding-bottom--24">
                         <div class="grid--50-50">
@@ -109,7 +109,7 @@ if ($submit) {
                                 <a href="demande_mdp.php">mot de passe oublié?</a>
                             </div>
                         </div>
-                        <input type="password" name="mdp_util" id="mdp_util">
+                        <input type="password" name="mdp_util" id="mdp_util" require>
                     </div>
                     <div class="field padding-bottom--24">
                         <input type="submit" name="submit" value="Validée" />
