@@ -3,10 +3,11 @@
 
 ## les comptes utilisateurs de test
 
+  
   rôle  utilisateur     mot de passe    adresse mail
-  adhérant  test            test            test@gmail.com
-  admin     test1           test1           test1@gmail.com
-  controleur    test2           test2           test2@gmail.com
+  - adhérant  test            test            test@gmail.com
+  - admin     test1           test1           test1@gmail.com
+  - controleur    test2           test2           test2@gmail.com
 
 # installation 
 Décompresser le dossier FREDI dans le répertoire "xampp\htdocs\projets" puis exécuter le script sql dans le fichier "fredi.sql".
