@@ -88,20 +88,28 @@ if ($submit) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/connexion.css">
     <title>demande_mdp</title>
 </head>
 
 <body>
-    <h2>demande d'un mot de passe</h2>
-    </p>
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <p>Adresse mail<br /><input type="text" name="mail_util" id="mail_util"></p>
-        <p><input type="submit" name="submit" value="OK" />
-            <button>
-                <a href="index.php">retour</a>
-            </button>
-        </p>
-    </form>
+    <?php include('header.php') ?>
+    <h1 class="centre">demande d'un mot de passe</h1>
+    <div class="formbg-outer">
+        <div class="formbg">
+            <div class="formbg-inner padding-horizontal--48">
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                    <div class="field padding-bottom--24">
+                        <label>Adresse mail</label>
+                        <input type="text" name="mail_util" id="mail_util">
+                    </div>
+                    <div class="field padding-bottom--24">
+                        <input type="submit" name="submit" value="Validée" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

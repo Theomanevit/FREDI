@@ -67,10 +67,10 @@
                 //Second request insertion data base
                 $sth = $dbh->prepare($sql_insert_adherant);
                 $sth->execute(array(':num_licence' => $licence, ':adresse' => $num_rue, ':ville' => $ville, ':cp' => $cp, ':id_club' => $club, 'id_util' => $id_util));
+                include("location.php");
             } catch(Exception $e) {
                 echo "<p>" .$e->getMessage(). "</p>";
             }
-            //header("Location: index.php");
         }
     }
 ?>
