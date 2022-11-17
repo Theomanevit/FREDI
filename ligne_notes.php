@@ -1,10 +1,7 @@
 <?php
 session_start();
 
-include("functions.php");
-// Récupère le nom du fichier PHP
-$tableau = pathinfo(__FILE__);
-$filename = $tableau['basename'];
+
 
 require('backend/connectionBdd.php');
 
@@ -37,7 +34,7 @@ try {
 
 if (count($rows)>0) {
     echo '<table>';
-    echo '<tr><th>date</th><th>motif</th><th>trajet</th><th>nombre km</th><th>Frais km</th><th>montant péage</th><th>montant repas</th><th>montant hébergement</th><th>modifier</th><th>supprimer</th></tr>';
+    echo '<tr><th>date</th><th>motif</th><th>trajet</th><th>nombre km</th><th>Frais km</th><th>montant péage</th><th>montant repas</th><th>montant hébergement</th><th>total</th><th>modifier</th><th>supprimer</th></tr>';
     foreach ($rows as $row){
 
       echo '<tr>';
@@ -46,17 +43,19 @@ if (count($rows)>0) {
       echo '<td>'.$row['lib_deplace'].'</td>';
       echo '<td>'.$row['nb_km'].'</td>';
       $frais_km = $row['nb_km'] * $row['montant_fisc'];
-      echo '<td>' . $frais_km . '</td>';
-      echo '<td>'.$row['frais_peage'].'</td>';
-      echo '<td>'.$row['frais_repas'].'</td>';
-      echo '<td>'.$row['frais_heber'].'</td>';
-      echo '<td>'.$row['lib_motif'].'</td>';
+      echo '<td>' . $frais_km . ' €</td>';
+      echo '<td>'.$row['frais_peage'].' €</td>';
+      echo '<td>'.$row['frais_repas'].' €</td>';
+      echo '<td>'.$row['frais_heber'].' €</td>';
+      $total_lfrais = $frais_km + $row['frais_peage'] + $row['frais_repas'] + $row['frais_heber'];
+      echo '<td>'.$total_lfrais .' €</td>';
       echo '<td><a href="fomulaire_modif.php?id='.$row['id_lfrais'].'"> modifier<a></td>';
       echo '<td><a href="fomulaire_suppr.php?id='.$row['id_lfrais'].'"> supprimer<a></td>';
       echo "</tr>";
 
 }
     echo "</table>";
+    // mettre insert total ligne
 } else {
     echo "<p>Rien à afficher</p>";
 }
