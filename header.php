@@ -62,8 +62,8 @@
             <div class="login-popup">
                 <div class="form-popup" id="popupDeco">
                     <form action="deconnexion.php" class="form-container">
-                        <h1>Veuillez vous déconnecter</h1>
-                        <button type="submit" class="btn">Connecter</button>
+                        <h1>Veuillez voulez-vous vous déconnecter ?</h1>
+                        <button type="submit" class="btn">déconnexion</button>
                         <button type="button" class="btn cancel" onclick="closeForm()">Fermer</button>
                     </form>
                 </div>
