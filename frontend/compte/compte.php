@@ -13,18 +13,27 @@ session_start();
 </head>
 
 <body>
-    <?php include('../../header.php') ?>
-    <div class=centre>
-        <?php
-        if (isset($_SESSION['id_util']) || true) {
-        ?>
-            <button onClick="parent.location.href='../../backend/compte/parsecsv.php'" type="button">Recharger la base de données</button>
-        <?php
-        } else {
-            header("location: ../../index.php");
-        }
-        ?>
-    </div>
+    <?php
+    if (isset($_SESSION['id_util'])) {
+    ?>
+        <?php include('../../header.php') ?>
+        <div class=centre>
+            <?php
+            if (isset($_SESSION['id_util']) || true) {
+            ?>
+                <button onClick="parent.location.href='../../backend/compte/parsecsv.php'" type="button">Recharger la base de données</button>
+            <?php
+            } else {
+                header("location: ../../index.php");
+            }
+            ?>
+        </div>
+    <?php
+
+    } else {
+        header("Location: ../../index.php");
+    }
+    ?>
 </body>
 
 </html>

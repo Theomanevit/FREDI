@@ -92,32 +92,38 @@ if ($submit) {
 </head>
 
 <body>
-    <?php include('header.php') ?>
-    <h1 class="centre">Connexion</h1>
-    <div class="formbg-outer">
-        <div class="formbg">
-            <div class="formbg-inner padding-horizontal--48">
-                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                    <div class="field padding-bottom--24">
-                        <label>Pseudo</label>
-                        <input type="text" name="pseudo_util" id="pseudo_util" require>
-                    </div>
-                    <div class="field padding-bottom--24">
-                        <div class="grid--50-50">
-                            <label>Mot de passe</label>
-                            <div class="reset-pass">
-                                <a href="demande_mdp.php">mot de passe oublié?</a>
-                            </div>
+    <?php
+    if (isset($_SESSION['id_util'])) {
+        header("Location: index.php");
+    } else {
+    ?>
+        <?php include('header.php') ?>
+        <h1 class="centre">Connexion</h1>
+        <div class="formbg-outer">
+            <div class="formbg">
+                <div class="formbg-inner padding-horizontal--48">
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                        <div class="field padding-bottom--24">
+                            <label>Pseudo</label>
+                            <input type="text" name="pseudo_util" id="pseudo_util" require>
                         </div>
-                        <input type="password" name="mdp_util" id="mdp_util" require>
-                    </div>
-                    <div class="field padding-bottom--24">
-                        <input type="submit" name="submit" value="Validée" />
-                    </div>
-                </form>
+                        <div class="field padding-bottom--24">
+                            <div class="grid--50-50">
+                                <label>Mot de passe</label>
+                                <div class="reset-pass">
+                                    <a href="demande_mdp.php">mot de passe oublié?</a>
+                                </div>
+                            </div>
+                            <input type="password" name="mdp_util" id="mdp_util" require>
+                        </div>
+                        <div class="field padding-bottom--24">
+                            <input type="submit" name="submit" value="Validée" />
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    <?php } ?>
 </body>
 
 </html>
