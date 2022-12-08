@@ -85,6 +85,7 @@ if ($iscontrol==0){
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+<?php include('header.php') ?>
 <h1>attribution roles</h1>
 <?php echo $message; ?></p>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
@@ -98,7 +99,6 @@ if ($iscontrol==0){
     <input name="iscontrol" id="iscontrol" type="radio" value="0" <?= $check4 ?> />Non</p>
     <div><input name="id_util" id="id_util" type="hidden" value="<?php echo $id_util; ?>" /></div>
     <p><input type="submit" name="submit" value="Envoyer" />&nbsp;</p>
-</form>
-<p>Liste des <a href="list_util.php">utilisateurs</a></p>        
+</form>    
 </body>
 </html>
