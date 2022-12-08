@@ -1,5 +1,7 @@
 <?php
 
+$id_nfrais = isset($_GET['id_nfrais']) ? $_GET['id_nfrais'] : '';
+
 $date_deplace = isset($_POST['date_deplace']) ? $_POST['date_deplace'] : '';
 $id_motif = isset($_POST['id_motif']) ? $_POST['id_motif'] : '';
 $lib_deplace = isset($_POST['lib_deplace']) ? $_POST['lib_deplace'] : '';
@@ -15,7 +17,7 @@ $submit = isset($_POST['submit']);
 
 if ($submit) {
     try {
-        $sql = "INSERT INTO lignefrais(date_deplace, id_motif, lib_deplace, nb_km, frais_peage, frais_repas, frais_heber) VALUES (:date_deplace , :id_motif , :lib_deplace, :nb_km, :frais_peage, :frais_repas, :frais_heber)";
+        $sql = "INSERT INTO lignefrais (date_deplace, id_motif, lib_deplace, nb_km, frais_peage, frais_repas, frais_heber, total_lfrais, id_nfrais) VALUES (:date_deplace , :id_motif , :lib_deplace, :nb_km, :frais_peage, :frais_repas, :frais_heber, :total_lfrais, :id_nfrais)";
         $params = array(
             ":date_deplace" => $date_deplace,
             ":id_motif" => $id_motif,
@@ -23,7 +25,9 @@ if ($submit) {
             ":nb_km" => $nb_km,
             ":frais_peage" => $frais_peage,
             ":frais_repas" => $frais_repas,
-            ":frais_heber" => $frais_heber
+            ":frais_heber" => $frais_heber,
+            "id_nfrais" => $id_nfrais,
+            ":total_lfrais" => $frais_peage + $frais_repas + $frais_heber
         );
         $sth = $dbh->prepare($sql);
         $sth->execute($params);
