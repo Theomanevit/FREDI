@@ -24,6 +24,7 @@ require('backend/CRUD_ligne_frais/ajout_ligne.php');
     <p>Frais de repas<br /><input name="frais_repas" id="frais_repas" type="text" value="<?php echo $frais_repas ?>" required/></p>
     <p>Frais d'hebergement<br /><input name="frais_heber" id="frais_heber" type="text" value="<?php echo $frais_heber ?>" required/></p>
     <p>Nombre de kilomètres<br /><input name="nb_km" id="nb_km" type="text" value="<?php echo $nb_km ?>" required/></p>
+    <div><input name="id_nfrais" id="id_nfrais" type="hidden" value="<?php echo $id_nfrais; ?>" /></div>
     <div><input name="id_lfrais" id="id_lfrais" type="hidden" value="<?php echo $id_lfrais; ?>" /></div>
     <p><input type="submit" name="submit" value="Envoyer" />&nbsp;<input type="reset" value="Réinitialiser" /></p>
 </form>
