@@ -8,9 +8,9 @@ https://trello.com/b/JX7kWf7S/projet-fredi
  
   rôle - utilisateur - mot de passe - adresse mail :
  
-  - adhérent  test            test            test@gmail.com
-  - admin     test1           test1           test1@gmail.com
-  - contrôleur    test2           test2           test2@gmail.com
+  - adhérent - test - test - test@gmail.com
+  - admin - test1 - test1 - test1@gmail.com
+  - contrôleur - test2 - test2 - test2@gmail.com
  
 # installation FREDI
  
