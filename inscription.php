@@ -28,13 +28,20 @@ require("backend/inscription/insert_db.php");
             <div class="formbg">
                 <div class="formbg-inner padding-horizontal--48">
                     <form action="inscription.php" method="post">
-                        <div class="field padding-bottom--24">
+                        <?php /*<div class="field padding-bottom--24">
                             <label>Chargement la base de données</label>
                             <?php if (isset($_SESSION['id_util']) || true) { ?>
                                 <button onClick="parent.location.href='backend/compte/parsecsv.php'" type="button">Recharger la base de données</button>
                             <?php } else {
                                 header("location: ../../index.php");
                             } ?>
+                        </div>*/ 
+                        ?>
+                        <div class="field padding-bottom--24">
+
+                                <label>Base de données : </label>
+                                <button><a href="backend/compte/parsecsv.php" >Charger</a></button>
+                            </p>
                         </div>
                         <div class="field padding-bottom--24">
                             <label>Pseudo</label>
@@ -64,11 +71,18 @@ require("backend/inscription/insert_db.php");
                             <label>Club</label>
                             <select name="club" id="club" required>
                                 <option value="">Choisissez un club</option>
-                                <option value="1">Athlétisme</option>
-                                <option value="2">Football</option>
-                                <option value="3">Escrime</option>
-                                <option value="4">Rugby</option>
-                                <option value="5">Volley</option>
+                                <option value="1">Dojo Burgien</option>
+                                <option value="2">Saint-Denis Dojo</option>
+                                <option value="3">Judo Club Vallée Arbent</option>
+                                <option value="4">Belli Judo</option>
+                                <option value="5">Racing Club Montluel Judo</option>
+                                <option value="6">Centre Arts Martiaux Pondinois</option>
+                                <option value="7">Judo Club Ornex</option>
+                                <option value="8">Dojo Gessien Valserine</option>
+                                <option value="9">Dojo La Vallière</option>
+                                <option value="10">Football club Merville</option>
+                                <option value="11">Football Club Bassin d'Arcachon</option>
+                                <option value="12">Andernos Sport Football Club</option>
                             </select>
                         </div>
                         <div class="field padding-bottom--24">
@@ -87,7 +101,7 @@ require("backend/inscription/insert_db.php");
                             <label>Ville</label>
                             <input type="text" name="ville" id="ville" placeholder="Entrer votre ville" required>
                         </div>
-                        <div>
+                        <div >
                             <p>
                                 <a href="condition_generale_utilisation.php" target="_blank">Condition générale d'utilisation</a>
                                 <input type="checkbox" name="cgu" id="cgu" required>
