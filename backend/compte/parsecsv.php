@@ -68,4 +68,6 @@
         }
         fclose($handle);
     }
+
+    header('location: ../../inscription.php');
 ?>

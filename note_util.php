@@ -40,6 +40,7 @@ try {
     <link rel="stylesheet" href="css/tableau.css">
 </head>
 <body>
+<?php include('header.php') ?>
 <h1>Liste des notes utilisateurs</h1>
 <?php
 if (count($rows)>0) {

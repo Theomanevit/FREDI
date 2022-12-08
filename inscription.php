@@ -29,6 +29,14 @@ require("backend/inscription/insert_db.php");
                 <div class="formbg-inner padding-horizontal--48">
                     <form action="inscription.php" method="post">
                         <div class="field padding-bottom--24">
+                            <label>Chargement la base de données</label>
+                            <?php if (isset($_SESSION['id_util']) || true) { ?>
+                                <button onClick="parent.location.href='backend/compte/parsecsv.php'" type="button">Recharger la base de données</button>
+                            <?php } else {
+                                header("location: ../../index.php");
+                            } ?>
+                        </div>
+                        <div class="field padding-bottom--24">
                             <label>Pseudo</label>
                             <input type="text" name="pseudo_util" id="pseudo_util" placeholder="Entrer un identifiant" required>
                         </div>
