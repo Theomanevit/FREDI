@@ -1,5 +1,4 @@
 <?php
-$id_lfrais = isset($_GET['id_lfrais']) ? $_GET['id_lfrais'] : '';
 
 $date_deplace = isset($_POST['date_deplace']) ? $_POST['date_deplace'] : '';
 $id_motif = isset($_POST['id_motif']) ? $_POST['id_motif'] : '';
