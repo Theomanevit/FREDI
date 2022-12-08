@@ -7,16 +7,27 @@
 
     try {
         //Delete data in database clubs, ligues, motifs
+        $foreign_key_checks = "SET foreign_key_checks=0";
         $sql_delete_clubs = "delete from clubs";
         $sql_delete_ligues = "delete from ligues";
         $sql_delete_motifs = "delete from motifdeplacement";
 
+
+        $sth = $dbh->prepare($foreign_key_checks);
+        $sth->execute();
         $sth = $dbh->prepare($sql_delete_clubs);
         $sth->execute();
         $sth = $dbh->prepare($sql_delete_ligues);
         $sth->execute();
         $sth = $dbh->prepare($sql_delete_motifs);
         $sth->execute();
+
+
+        $foreign_key_checks = "SET foreign_key_checks=1";
+
+        $sth = $dbh->prepare($foreign_key_checks);
+        $sth->execute();
+        
     } catch(Exception $e) {
         echo "<p>" .$e->getMessage(). "</p>";
     }

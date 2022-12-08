@@ -35,13 +35,11 @@ require("backend/inscription/insert_db.php");
                             <?php } else {
                                 header("location: ../../index.php");
                             } ?>
-                        </div>*/ 
+                        </div>*/
                         ?>
                         <div class="field padding-bottom--24">
-
-                                <label>Base de données : </label>
-                                <button><a href="backend/compte/parsecsv.php" >Charger</a></button>
-                            </p>
+                            <label>Base de données : </label>
+                            <button><a href="backend/compte/parsecsv.php">Charger</a></button>
                         </div>
                         <div class="field padding-bottom--24">
                             <label>Pseudo</label>
@@ -101,7 +99,7 @@ require("backend/inscription/insert_db.php");
                             <label>Ville</label>
                             <input type="text" name="ville" id="ville" placeholder="Entrer votre ville" required>
                         </div>
-                        <div >
+                        <div>
                             <p>
                                 <a href="condition_generale_utilisation.php" target="_blank">Condition générale d'utilisation</a>
                                 <input type="checkbox" name="cgu" id="cgu" required>
