@@ -6,7 +6,6 @@ https://trello.com/b/JX7kWf7S/projet-fredi
  
 ## les comptes utilisateurs de test
  
- 
   rôle - utilisateur - mot de passe - adresse mail :
  
   - adhérent  test            test            test@gmail.com
