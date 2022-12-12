@@ -6,7 +6,6 @@ session_start();
 require('backend/connectionBdd.php');
 
 $id_nfrais = isset($_GET['id_nfrais']) ? $_GET['id_nfrais'] : '';
-
 $sql = 'select * FROM lignefrais , notefrais , periodefiscale , motifdeplacement where motifdeplacement.id_motif = lignefrais.id_motif and lignefrais.id_nfrais = notefrais.id_nfrais and notefrais.id_fisc = periodefiscale.id_fisc';
 
 try {
@@ -33,6 +32,7 @@ try {
     <?php include('header.php');
 
 if (count($rows)>0) {
+  echo '<div class="haut">';
     echo '<table>';
     echo '<tr><th>date</th><th>motif</th><th>trajet</th><th>nombre km</th><th>Frais km</th><th>montant péage</th><th>montant repas</th><th>montant hébergement</th><th>total</th><th>modifier</th><th>supprimer</th></tr>';
     foreach ($rows as $row){
@@ -55,12 +55,13 @@ if (count($rows)>0) {
 
 }
     echo "</table>";
+    echo '</div>';
     // mettre insert total ligne
 } else {
     echo "<p>Rien à afficher</p>";
 }
 ?>
-<p><a href="fomulaire_ajout.php"> ajouter une ligne de frais<a></p>
+<p><a href="fomulaire_ajout.php?id_nfrais=<?php echo $id_nfrais ?>"> ajouter une ligne de frais<a></p>
 
 </body>
 </html>
