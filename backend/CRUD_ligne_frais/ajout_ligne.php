@@ -1,6 +1,6 @@
 <?php
 
-$id_nfrais = isset($_GET['id_nfrais']) ? $_GET['id_nfrais'] : '';
+require('backend/connectionBdd.php');
 
 $date_deplace = isset($_POST['date_deplace']) ? $_POST['date_deplace'] : '';
 $id_motif = isset($_POST['id_motif']) ? $_POST['id_motif'] : '';
@@ -11,7 +11,14 @@ $frais_repas = isset($_POST['frais_repas']) ? $_POST['frais_repas'] : '';
 $frais_heber = isset($_POST['frais_heber']) ? $_POST['frais_heber'] : '';
 $submit = isset($_POST['submit']);
 
-require('backend/connectionBdd.php');
+
+if($submit){
+    $id_nfrais = isset($_POST['id_nfrais']) ? $_POST['id_nfrais'] : '';
+}else{
+    $id_nfrais = isset($_GET['id_nfrais']) ? $_GET['id_nfrais'] : '';
+}
+
+
 
 $submit = isset($_POST['submit']);
 
@@ -26,7 +33,7 @@ if ($submit) {
             ":frais_peage" => $frais_peage,
             ":frais_repas" => $frais_repas,
             ":frais_heber" => $frais_heber,
-            "id_nfrais" => $id_nfrais,
+            ":id_nfrais" => $id_nfrais,
             ":total_lfrais" => $frais_peage + $frais_repas + $frais_heber
         );
         $sth = $dbh->prepare($sql);
