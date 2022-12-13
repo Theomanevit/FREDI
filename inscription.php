@@ -32,6 +32,11 @@ require("backend/inscription/insert_db.php");
                             <label>Base de données : </label>
                             <button><a href="backend/compte/parsecsv.php">Charger</a></button>
                         </div>
+                        <div  class="field padding-bottom--24">
+                            <?php if (isset($messages)) {
+                                echo "<p class='rouge'>" . $messages . "</p>";
+                            } ?>
+                        </div>
                         <div class="field padding-bottom--24">
                             <label>Pseudo</label>
                             <input type="text" name="pseudo_util" id="pseudo_util" placeholder="Entrer un identifiant" required>
@@ -50,7 +55,7 @@ require("backend/inscription/insert_db.php");
                         </div>
                         <div class="field padding-bottom--24">
                             <label>Confirmer mot de passe</label>
-                            <input type="password" placeholder="Confirmer mot de passe" required>
+                            <input type="password" name="conf_mdp_util" id="conf_mdp_util" placeholder="Confirmer mot de passe" required>
                         </div>
                         <div class="field padding-bottom--24">
                             <label>Mail</label>
@@ -102,11 +107,6 @@ require("backend/inscription/insert_db.php");
                             <input type="submit" name="submit" value="Validée" />
                         </div>
                     </form>
-                    <div>
-                        <?php if (isset($messages)) {
-                            echo "<p>" . $messages . "</p>";
-                        } ?>
-                    </div>
                 </div>
             </div>
         </div>

@@ -362,3 +362,9 @@ h2 {
 .haut{
     padding-top: 25px;
 }
+
+.rouge{
+    color: red;
+    font-weight: 700;
+    font-size: large;
+}
