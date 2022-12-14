@@ -20,7 +20,6 @@ try {
     die( "<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
   }
 
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
