@@ -80,5 +80,7 @@
         fclose($handle);
     }
 
-    header('location: ../../inscription.php');
+    include("donnéestest.php");
+
+    //header('location: ../../inscription.php');
 ?>
