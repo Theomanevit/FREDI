@@ -5,12 +5,27 @@ session_start();
 
 require('backend/connectionBdd.php');
 
+
 $id_nfrais = isset($_GET['id_nfrais']) ? $_GET['id_nfrais'] : '';
-$sql = 'select * FROM lignefrais , notefrais , periodefiscale , motifdeplacement where motifdeplacement.id_motif = lignefrais.id_motif and lignefrais.id_nfrais = notefrais.id_nfrais and notefrais.id_fisc = periodefiscale.id_fisc';
+$id_adherant = isset($_GET['id_adherant']) ? $_GET['id_adherant'] : '';
+
+
+$sql = 'select id_lfrais, montant_fisc, lib_deplace, date_deplace, frais_peage, frais_repas, frais_heber, nb_km, total_lfrais, lignefrais.id_nfrais, motifdeplacement.lib_motif
+FROM lignefrais , notefrais , periodefiscale , motifdeplacement, adherant
+where motifdeplacement.id_motif = lignefrais.id_motif 
+and lignefrais.id_nfrais = notefrais.id_nfrais 
+and notefrais.id_fisc = periodefiscale.id_fisc 
+and adherant.id_adherant = :id_adherant
+and notefrais.id_nfrais = :id_nfrais';
+
+$params = array(
+":id_adherant" => $id_adherant,
+":id_nfrais" => $id_nfrais
+);
 
 try {
     $sth = $dbh->prepare($sql);
-    $sth->execute();
+    $sth->execute($params);
     $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
   } catch (PDOException $e) {
     die( "<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
