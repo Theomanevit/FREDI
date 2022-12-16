@@ -28,6 +28,10 @@ $pdf = new Fpdi();
 $pageCount = $pdf->setSourceFile('infiles/cerfa.pdf');
 $pageId = $pdf->importPage(1, PdfReader\PageBoundaries::MEDIA_BOX);
 
+$pdf->SetTitle('cerfa ', true);
+$pdf->SetAuthor('FREDI', true);
+$pdf->SetSubject('cerfa', true);
+
 $pdf->addPage();
 $pdf->useImportedPage($pageId);
 
@@ -67,5 +71,5 @@ $pdf->SetFont('Helvetica', '', 10);
 $pdf->SetXY(70, 180);
 $pdf->Write(0, utf8_decode($row["ville"]));
 
-$pdf->Output('F', 'outfiles/cerfa.pdf');
+$pdf->Output('F', 'outfiles/cerfa_'.$row["nom_util"].'_'.$row["prenom_util"].'.pdf');
 header('Location: index.php');
