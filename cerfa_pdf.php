@@ -28,6 +28,10 @@ $pdf = new Fpdi();
 $pageCount = $pdf->setSourceFile('infiles/cerfa.pdf');
 $pageId = $pdf->importPage(1, PdfReader\PageBoundaries::MEDIA_BOX);
 
+$pdf->SetTitle('cerfa ', true);
+$pdf->SetAuthor('FREDI', true);
+$pdf->SetSubject('cerfa', true);
+
 $pdf->addPage();
 $pdf->useImportedPage($pageId);
 
