@@ -16,9 +16,9 @@ if ($submit) {
 
     try {
         $id_lfrais = $_POST['id_lfrais'];
-        $sql = "UPDATE lignefrais set date_deplace=:date_deplace, id_motif=:id_motif, lib_deplace=:lib_deplace, nb_km=:nb_km, frais_peage=:frais_peage, frais_repas=:frais_repas, frais_heber=:frais_heber where id_util=:id_util";
+        $sql = "UPDATE lignefrais set date_deplace=:date_deplace, id_motif=:id_motif, lib_deplace=:lib_deplace, nb_km=:nb_km, frais_peage=:frais_peage, frais_repas=:frais_repas, frais_heber=:frais_heber where id_lfrais=:id_lfrais";
         $params = array(
-            ":id_util" => $_SESSION["id_util"],
+            ":id_lfrais" => $id_lfrais,
             ":date_deplace" => $date_deplace,
             ":id_motif" => $id_motif,           // Raison du déplacement
             ":lib_deplace" => $lib_deplace,     // Le nom du trajet ville - ville
@@ -34,10 +34,11 @@ if ($submit) {
     }
 } else {
     try {
-        $sql = "select date_deplace,lib_motif,lib_deplace,nb_km,montant_fisc,frais_peage,frais_repas,frais_heber FROM lignefrais , notefrais , periodefiscale , motifdeplacement where motifdeplacement.id_motif = lignefrais.id_motif and lignefrais.id_nfrais = notefrais.id_nfrais and notefrais.id_fisc = periodefiscale.id_fisc";
+        $id_lfrais = $_GET['id_lfrais'];
+        $sql = "select date_deplace,lib_motif, lignefrais.id_motif, lib_deplace,nb_km,montant_fisc,frais_peage,frais_repas,frais_heber FROM lignefrais , notefrais , periodefiscale , motifdeplacement where motifdeplacement.id_motif = lignefrais.id_motif and lignefrais.id_nfrais = notefrais.id_nfrais and notefrais.id_fisc = periodefiscale.id_fisc";
         $sth = $dbh->prepare($sql);
         $sth->execute(array(":id_lfrais" => $id_lfrais));
-        $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+        $row = $sth->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $ex) {
         die("<p>Erreur lors de la requête SQL : " . $ex->getMessage() . "</p>");
     }
@@ -49,5 +50,5 @@ if ($submit) {
     $frais_repas = $row["frais_repas"];
     $frais_heber = $row['frais_heber'];
   
-    $message = "Veuillez réaliser la modification de l'ID $id SVP";
+    $message = "Veuillez réaliser la modification de l'ID $id_lfrais SVP";
 }
