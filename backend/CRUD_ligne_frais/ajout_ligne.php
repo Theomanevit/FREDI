@@ -19,10 +19,20 @@ if($submit){
 }
 
 
-
 $submit = isset($_POST['submit']);
 
 if ($submit) {
+
+    
+try {
+    $sql = "SELECT montant_fisc FROM periodefiscale";
+    $sth = $dbh->prepare($sql);
+    $sth->execute();
+    $fisc = $sth->fetch(PDO::FETCH_ASSOC);
+  } catch (PDOException $e) {
+    die( "<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+  }
+
     try {
         $sql = "INSERT INTO lignefrais (date_deplace, id_motif, lib_deplace, nb_km, frais_peage, frais_repas, frais_heber, total_lfrais, id_nfrais) VALUES (:date_deplace , :id_motif , :lib_deplace, :nb_km, :frais_peage, :frais_repas, :frais_heber, :total_lfrais, :id_nfrais)";
         $params = array(
@@ -34,7 +44,7 @@ if ($submit) {
             ":frais_repas" => $frais_repas,
             ":frais_heber" => $frais_heber,
             ":id_nfrais" => $id_nfrais,
-            ":total_lfrais" => $frais_peage + $frais_repas + $frais_heber
+            ":total_lfrais" => $fisc["montant_fisc"]*$nb_km+$frais_peage + $frais_repas + $frais_heber
         );
         $sth = $dbh->prepare($sql);
         $sth->execute($params);
@@ -47,4 +57,3 @@ if ($submit) {
         echo "<p> Essayez encore ! </p>";
     }
 }
-?>
