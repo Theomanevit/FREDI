@@ -101,7 +101,6 @@ try {
 
       echo '<p><a href="fomulaire_ajout.php?id_nfrais=<?php echo $id_nfrais ?>"> ajouter une ligne de frais<a></p>';
       echo '<div><p>Création : <a href="bordereau_pdf.php">pdf bordereau</a></p></div>';
-      echo '<div><p>Création : <a href="cerfa_pdf.php">pdf cerfa</a></p></div>';
     }
   }
   //Affichage tableau pour le contrôleur
@@ -130,6 +129,7 @@ try {
       }
       echo "</table>";
       echo '</div>';
+      echo '<div><p>Création : <a href="cerfa_pdf.php">pdf cerfa</a></p></div>';
       // mettre insert total ligne
     }
   } else {
