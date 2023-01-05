@@ -49,7 +49,7 @@ try {
         echo '<table>';
         echo '<tr><th>idantifiant note</th><th>frais total</th><th>date ordre</th><th>numero ordre</th><th></th></tr>';
         foreach ($rows as $row) {
-            //TODO réparer l'affichage de la liste des notes de frais pour chaque note de frais (coté CONTROLEUR)
+
             if (!isset($_SESSION['isadmin']) && !isset($_SESSION['iscontrol'])) {
                 echo '<tr>';
                 echo '<td>' . $row['id_nfrais'] . '</td>';

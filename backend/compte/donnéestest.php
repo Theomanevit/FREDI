@@ -38,9 +38,9 @@
 
     $test_utilisateur ="INSERT INTO utilisateur (id_util, pseudo_util, mdp_util, nom_util, prenom_util, mail_util, iscontrol, isadmin)
         VALUES
-        (1, 'test2', '".password_hash('test2', PASSWORD_DEFAULT)."', 'test2', 'test2', 'test2@gmail.com', 1, 0),
+        (1, 'test2', '".password_hash('test2', PASSWORD_DEFAULT)."', 'test2', 'test2', 'test2@gmail.com', 0, 0),
         (2, 'test1', '".password_hash('test1', PASSWORD_DEFAULT)."', 'test1', 'test1', 'test1@gmail.com', 0, 1),
-        (3, 'test', '".password_hash('test', PASSWORD_DEFAULT)."', 'test', 'test', 'test@gmail.com', 0, 0)";
+        (3, 'test', '".password_hash('test', PASSWORD_DEFAULT)."', 'test', 'test', 'test@gmail.com', 1, 0)";
 
     $test_periode ='INSERT into periodefiscale (id_fisc, annee_fisc, isactive_fisc, montant_fisc) VALUES (1 ,2022, 1, 1)';
 
