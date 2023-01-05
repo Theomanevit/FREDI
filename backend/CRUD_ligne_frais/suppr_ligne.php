@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 $date_deplace = isset($_POST['date_deplace']) ? $_POST['date_deplace'] : '';
 $id_motif = isset($_POST['id_motif']) ? $_POST['id_motif'] : '';
 $lib_deplace = isset($_POST['lib_deplace']) ? $_POST['lib_deplace'] : '';
@@ -11,5 +9,38 @@ $frais_repas = isset($_POST['frais_repas']) ? $_POST['frais_repas'] : '';
 $frais_heber = isset($_POST['frais_heber']) ? $_POST['frais_heber'] : '';
 $submit = isset($_POST['submit']);
 
+
 require('backend/connectionBdd.php');
 
+if ($submit) {
+
+    try {
+        $id_lfrais = $_POST['id_lfrais'];
+        $sql = "DELETE FROM lignefrais where id_lfrais=:id_lfrais";
+        $params = array(
+            ":id_lfrais" => $id_lfrais);
+        $sth = $dbh->prepare($sql);
+        $sth->execute($params);
+    } catch (PDOException $ex) {
+        die("Erreur lors de la requête SQL : " . $ex->getMessage());
+    }
+} else {
+    try {
+        $id_lfrais = $_GET['id_lfrais'];
+        $sql = "select date_deplace,lib_motif, lignefrais.id_motif, lib_deplace,nb_km,montant_fisc,frais_peage,frais_repas,frais_heber FROM lignefrais , notefrais , periodefiscale , motifdeplacement where motifdeplacement.id_motif = lignefrais.id_motif and lignefrais.id_nfrais = notefrais.id_nfrais and notefrais.id_fisc = periodefiscale.id_fisc";
+        $sth = $dbh->prepare($sql);
+        $sth->execute(array(":id_lfrais" => $id_lfrais));
+        $row = $sth->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $ex) {
+        die("<p>Erreur lors de la requête SQL : " . $ex->getMessage() . "</p>");
+    }
+    $date_deplace = $row['date_deplace'];
+    $id_motif = $row['id_motif'];
+    $lib_deplace = $row['lib_deplace'];
+    $nb_km = $row['nb_km'];
+    $frais_peage = $row['frais_peage'];
+    $frais_repas = $row["frais_repas"];
+    $frais_heber = $row['frais_heber'];
+  
+    $message = "Veuillez réaliser la suppression de l'ID $id_lfrais SVP";
+}
