@@ -13,10 +13,12 @@ $submit = isset($_POST['submit']);
 
 
 if($submit){
-    $id_nfrais = isset($_POST['id_nfrais']) ? $_POST['id_nfrais'] : '';
+    $id_nfrais = isset($_POST['id_nfrais']) ? $_POST['id_nfrais'] : NULL;
 }else{
-    $id_nfrais = isset($_GET['id_nfrais']) ? $_GET['id_nfrais'] : '';
+    $id_nfrais = isset($_GET['id_nfrais']) ? $_GET['id_nfrais'] : NULL;
+    require('backend/CRUD_ligne_frais/ajout_auto_note.php');
 }
+
 
 
 $submit = isset($_POST['submit']);

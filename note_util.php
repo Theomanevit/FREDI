@@ -11,13 +11,13 @@ $filename = $tableau['basename'];
 require("backend/connectionBdd.php");
 
 if (isset($_SESSION['iscontrol'])) {
-    $sql = 'select id_nfrais, tot_nfrais, date_ordre, num_ordre from notefrais where isvalid="1"';
+    $sql = 'select id_nfrais, tot_nfrais, date_ordre, num_ordre from notefrais as nf, periodefiscale as pf where nf.id_fisc = pf.id_fisc and isactive_fisc= 1';
 }
 if (isset($_SESSION['isadmin'])) {
     header("location: index.php");
 }
 if (!isset($_SESSION['isadmin']) && !isset($_SESSION['iscontrol'])) {
-    $sql = 'select id_nfrais, tot_nfrais, date_ordre, num_ordre, notefrais.id_adherant from notefrais, adherant where notefrais.id_adherant=adherant.id_adherant and adherant.id_util= ' . $_SESSION["id_util"] . ' and isvalid="1"';
+    $sql = 'select id_nfrais, tot_nfrais, date_ordre, num_ordre, nf.id_adherant from notefrais as nf, adherant as a, periodefiscale as pf where nf.id_adherant = a.id_adherant and nf.id_fisc = pf.id_fisc and a.id_util= ' . $_SESSION["id_util"] . ' and isactive_fisc= 1';
 }
 
 try {
@@ -71,7 +71,9 @@ try {
         }
         echo "</table>";
     } else {
-        echo "<p>Rien à afficher</p>";
+        echo '<p>Aucune note de frais</p>';
+        if(!isset($_SESSION['iscontrol']))
+            echo '<a href="fomulaire_ajout.php">[ajouter une ligne de frais]</a>';
     }
     ?>
 </body>
