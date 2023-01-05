@@ -21,7 +21,7 @@ require('backend/CRUD_ligne_frais/modif_ligne.php');
     <?php include('header.php') ?>
     <h1>modifier une ligne de frais</h1>
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <p>Type de déplacement <br /><input name="id_motif" id="id_motif" type="text" value="<?php echo $id_motif ?>" required /></p>
+        <p>Type de déplacement <br /><input name="id_motif" id="id_motif" type="select" value="<?php echo $id_motif ?>" required /></p>
         <p>Trajet <br /><input name="lib_deplace" id="lib_deplace" type="text" value="<?php echo $lib_deplace ?>" required /></p>
         <p>Date du deplacement<br /><input name="date_deplace" id="date_deplace" type="date" value="<?php echo $date_deplace ?>" required /></p>
         <p>Frais de péage<br /><input name="frais_peage" id="frais_peage" type="text" value="<?php echo $frais_peage ?>" required /></p>
