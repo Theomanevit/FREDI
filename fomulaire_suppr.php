@@ -20,7 +20,20 @@ require('backend/CRUD_ligne_frais/suppr_ligne.php');
     <?php include('header.php') ?>
     <h1>supprimer une ligne de frais</h1>
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <p>motif du deplacement<br /><input name="lib_deplace" id="lib_deplace" type="text" value="<?php echo $lib_deplace ?>" disabled /></p>
+    <div class="field padding-bottom--24">
+                        <label>Motif</label>
+                        <select name="id_motif" id="id_motif" value=<?php echo $id_motif ?> disabled>
+                            <option value="1">Réunion</option>
+                            <option value="2">Compétition régionale</option>
+                            <option value="3">Compétition nationale</option>
+                            <option value="4">Compétition internationnale</option>
+                            <option value="5">Stage</option>
+                            <option value="6">Visite médicale</option>
+                            <option value="7">Oxygénation</option>
+                            <option value="8">Convocation</option>
+                            <option value="9">Formation</option>
+                        </select>
+                    </div>
         <p>date du deplacement<br /><input name="date_deplace" id="date_deplace" type="date" value="<?php echo $date_deplace ?>" disabled /></p>
         <p>frais de péage<br /><input name="frais_peage" id="frais_peage" type="text" value="<?php echo $frais_peage ?>" disabled /></p>
         <p>frais de repas<br /><input name="frais_repas" id="frais_repas" type="text" value="<?php echo $frais_repas ?>" disabled /></p>
