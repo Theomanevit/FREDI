@@ -23,16 +23,16 @@ require('backend/CRUD_ligne_frais/modif_ligne.php');
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
     <div class="field padding-bottom--24">
                         <label>Motif</label>
-                        <select name="id_motif" id="id_motif" value=<?php echo $id_motif ?> required>
-                            <option value="1">Réunion</option>
-                            <option value="2">Compétition régionale</option>
-                            <option value="3">Compétition nationale</option>
-                            <option value="4">Compétition internationnale</option>
-                            <option value="5">Stage</option>
-                            <option value="6">Visite médicale</option>
-                            <option value="7">Oxygénation</option>
-                            <option value="8">Convocation</option>
-                            <option value="9">Formation</option>
+                        <select name="id_motif" id="id_motif" required>
+                        <option value="1"<?php if($id_motif == 1) { echo "selected"; } ?>>Réunion</option>
+                        <option value="2"<?php if($id_motif == 2) { echo "selected"; } ?>>Compétition régionale</option>
+                        <option value="3"<?php if($id_motif == 3) { echo "selected"; } ?>>Compétition nationale</option>
+                        <option value="4"<?php if($id_motif == 4) { echo "selected"; } ?>>Compétition internationnale</option>
+                        <option value="5"<?php if($id_motif == 5) { echo "selected"; } ?>>Stage</option>
+                        <option value="6"<?php if($id_motif == 6) { echo "selected"; } ?>>Visite médicale</option>
+                        <option value="7"<?php if($id_motif == 7) { echo "selected"; } ?>>Oxygénation</option>
+                        <option value="8"<?php if($id_motif == 8) { echo "selected"; } ?>>Convocation</option>
+                        <option value="9"<?php if($id_motif == 9) { echo "selected"; } ?>>Formation</option>
                         </select>
                     </div>
         <p>Trajet <br /><input name="lib_deplace" id="lib_deplace" type="text" value="<?php echo $lib_deplace ?>" required /></p>
@@ -46,7 +46,5 @@ require('backend/CRUD_ligne_frais/modif_ligne.php');
         <p><input type="submit" name="submit" value="Envoyer" />&nbsp;<input type="reset" value="Réinitialiser" /></p>
     </form>
 </body>
-
-value="<?php echo $id_motif ?>
 
 </html>

@@ -35,7 +35,7 @@ if ($submit) {
 } else {
     try {
         $id_lfrais = $_GET['id_lfrais'];
-        $sql = "select date_deplace,lib_motif, lignefrais.id_motif, lib_deplace,nb_km,montant_fisc,frais_peage,frais_repas,frais_heber FROM lignefrais , notefrais , periodefiscale , motifdeplacement where motifdeplacement.id_motif = lignefrais.id_motif and lignefrais.id_nfrais = notefrais.id_nfrais and notefrais.id_fisc = periodefiscale.id_fisc";
+        $sql = "select date_deplace,lib_motif, lignefrais.id_motif, lib_deplace,nb_km,montant_fisc,frais_peage,frais_repas,frais_heber FROM lignefrais , notefrais , periodefiscale , motifdeplacement where motifdeplacement.id_motif = lignefrais.id_motif and lignefrais.id_nfrais = notefrais.id_nfrais and notefrais.id_fisc = periodefiscale.id_fisc and id_lfrais=:id_lfrais";
         $sth = $dbh->prepare($sql);
         $sth->execute(array(":id_lfrais" => $id_lfrais));
         $row = $sth->fetch(PDO::FETCH_ASSOC);
