@@ -82,5 +82,5 @@
 
     include("donnéestest.php");
 
-    //header('location: ../../inscription.php');
+    header('location: ../../inscription.php');
 ?>
