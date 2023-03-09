@@ -4,6 +4,7 @@ session_start();
 
 
 require('backend/CRUD_ligne_frais/suppr_ligne.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
