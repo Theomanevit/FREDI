@@ -56,7 +56,7 @@ try {
         die("Erreur lors de la requête SQL : " . $ex->getMessage());
     }
     if ($sth->rowCount()) {
-        header("'location: ligne_notes.php?id_nfrais=' . $id_nfrais . '&id_adherant=' . $id_adherant");
+        header('location: note_util.php');
     } else {
         echo "<p> Essayez encore ! </p>";
     }
