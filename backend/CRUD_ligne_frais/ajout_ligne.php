@@ -12,30 +12,37 @@ $frais_heber = isset($_POST['frais_heber']) ? $_POST['frais_heber'] : '';
 $submit = isset($_POST['submit']);
 
 
-if($submit){
-    $id_nfrais = isset($_POST['id_nfrais']) ? $_POST['id_nfrais'] : NULL;
-    $id_adherant = isset($_POST['id_adherant']) ? $_POST['id_adherant'] : NULL;
-}else{
-    $id_nfrais = isset($_GET['id_nfrais']) ? $_GET['id_nfrais'] : NULL;
-    $id_adherant = isset($_POST['id_adherant']) ? $_POST['id_adherant'] : NULL;
-    require('backend/CRUD_ligne_frais/ajout_auto_note.php');
+if (isset($_GET['id_nfrais'])) {
+    $id_nfrais = isset($_GET['id_nfrais']) ? $_GET['id_nfrais'] : '';
+} else {
+    $id_nfrais = isset($_POST['id_nfrais']) ? $_POST['id_nfrais'] : '';
 }
 
 
+if (isset($_GET['id_adherant'])) {
+    $id_adherant = isset($_GET['id_adherant']) ? $_GET['id_adherant'] : '';
+} else {
+    $id_adherant = isset($_POST['id_adherant']) ? $_POST['id_adherant'] : '';
+}
+
+if (isset($_GET['id_lfrais'])) {
+    $id_lfrais = isset($_GET['id_lfrais']) ? $_GET['id_lfrais'] : '';
+} else {
+    $id_lfrais = isset($_POST['id_lfrais']) ? $_POST['id_lfrais'] : '';
+}
 
 $submit = isset($_POST['submit']);
 
 if ($submit) {
 
-    
-try {
-    $sql = "SELECT montant_fisc FROM periodefiscale";
-    $sth = $dbh->prepare($sql);
-    $sth->execute();
-    $fisc = $sth->fetch(PDO::FETCH_ASSOC);
-  } catch (PDOException $e) {
-    die( "<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
-  }
+    try {
+        $sql = "SELECT montant_fisc FROM periodefiscale";
+        $sth = $dbh->prepare($sql);
+        $sth->execute();
+        $fisc = $sth->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+    }
 
     try {
         $sql = "INSERT INTO lignefrais (date_deplace, id_motif, lib_deplace, nb_km, frais_peage, frais_repas, frais_heber, total_lfrais, id_nfrais) VALUES (:date_deplace , :id_motif , :lib_deplace, :nb_km, :frais_peage, :frais_repas, :frais_heber, :total_lfrais, :id_nfrais)";
@@ -48,16 +55,74 @@ try {
             ":frais_repas" => $frais_repas,
             ":frais_heber" => $frais_heber,
             ":id_nfrais" => $id_nfrais,
-            ":total_lfrais" => $fisc["montant_fisc"]*$nb_km+$frais_peage + $frais_repas + $frais_heber
+            ":total_lfrais" => $fisc["montant_fisc"] * $nb_km + $frais_peage + $frais_repas + $frais_heber
         );
         $sth = $dbh->prepare($sql);
         $sth->execute($params);
     } catch (PDOException $ex) {
         die("Erreur lors de la requête SQL : " . $ex->getMessage());
     }
-    if ($sth->rowCount()) {
-        header('location: note_util.php');
-    } else {
-        echo "<p> Essayez encore ! </p>";
+
+
+    try {
+        $sql = "SELECT montant_fisc FROM `periodefiscale` , notefrais WHERE notefrais.id_fisc=periodefiscale.id_fisc and id_nfrais=:id_nfrais";
+        $params = array(
+            "id_nfrais" => $id_nfrais
+        );
+        $sth = $dbh->prepare($sql);
+        $sth->execute($params);
+        $rows1 = $sth->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
     }
+
+    foreach ($rows1 as $row) {
+        $frais_km = $nb_km * $row['montant_fisc'];
+    }
+
+    $total_lfrais = $frais_km + $frais_peage + $frais_repas + $frais_heber;
+
+    try {
+        $sql = "UPDATE lignefrais set total_lfrais = :total_lfrais where id_lfrais = :id_lfrais";
+        $params = array(
+            "total_lfrais" => $total_lfrais,
+            "id_lfrais" => $id_lfrais
+        );
+        $sth = $dbh->prepare($sql);
+        $sth->execute($params);
+        $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+    }
+
+    try {
+        $sql = "SELECT total_lfrais from lignefrais where id_nfrais = :id_nfrais";
+        $params = array(
+            "id_nfrais" => $id_nfrais
+        );
+        $sth = $dbh->prepare($sql);
+        $sth->execute($params);
+        $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+    }
+    $sum = 0;
+    foreach ($rows as $row) {
+        $sum = $row["total_lfrais"] + $sum;
+    }
+    try {
+        $sql = "UPDATE notefrais set tot_nfrais = :sum where id_nfrais = :id_nfrais";
+        $params = array(
+            "sum" => $sum,
+            "id_nfrais" => $id_nfrais
+        );
+        $sth = $dbh->prepare($sql);
+        $sth->execute($params);
+    } catch (PDOException $e) {
+        die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+    }
+
+    header("location: note_util.php");
+}else{
+    require('backend/CRUD_ligne_frais/ajout_auto_note.php');
 }

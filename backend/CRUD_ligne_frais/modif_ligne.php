@@ -74,10 +74,10 @@ if ($submit) {
     $total_lfrais = $frais_km + $frais_peage + $frais_repas + $frais_heber;
 
     try {
-        $sql = "UPDATE lignefrais set total_lfrais = :total_lfrais where id_nfrais = :id_nfrais";
+        $sql = "UPDATE lignefrais set total_lfrais = :total_lfrais where id_lfrais = :id_lfrais";
         $params = array(
             "total_lfrais" => $total_lfrais,
-            "id_nfrais" => $id_nfrais
+            "id_lfrais" => $id_lfrais
         );
         $sth = $dbh->prepare($sql);
         $sth->execute($params);
