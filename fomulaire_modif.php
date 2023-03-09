@@ -21,7 +21,20 @@ require('backend/CRUD_ligne_frais/modif_ligne.php');
     <?php include('header.php') ?>
     <h1>modifier une ligne de frais</h1>
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <p>Type de déplacement <br /><input name="id_motif" id="id_motif" type="text" value="<?php echo $id_motif ?>" required /></p>
+    <div class="field padding-bottom--24">
+                        <label>Motif</label>
+                        <select name="id_motif" id="id_motif" value=<?php echo $id_motif ?> required>
+                            <option value="1">Réunion</option>
+                            <option value="2">Compétition régionale</option>
+                            <option value="3">Compétition nationale</option>
+                            <option value="4">Compétition internationnale</option>
+                            <option value="5">Stage</option>
+                            <option value="6">Visite médicale</option>
+                            <option value="7">Oxygénation</option>
+                            <option value="8">Convocation</option>
+                            <option value="9">Formation</option>
+                        </select>
+                    </div>
         <p>Trajet <br /><input name="lib_deplace" id="lib_deplace" type="text" value="<?php echo $lib_deplace ?>" required /></p>
         <p>Date du deplacement<br /><input name="date_deplace" id="date_deplace" type="date" value="<?php echo $date_deplace ?>" required /></p>
         <p>Frais de péage<br /><input name="frais_peage" id="frais_peage" type="text" value="<?php echo $frais_peage ?>" required /></p>
@@ -33,5 +46,7 @@ require('backend/CRUD_ligne_frais/modif_ligne.php');
         <p><input type="submit" name="submit" value="Envoyer" />&nbsp;<input type="reset" value="Réinitialiser" /></p>
     </form>
 </body>
+
+value="<?php echo $id_motif ?>
 
 </html>

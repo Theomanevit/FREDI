@@ -16,9 +16,6 @@ session_start();
 <body>
     <?php include('header.php') ?>
     <h1 class="centre">FREDI : Le site de l'avenir du sport</h1>
-    <div><a href="bordereau_pdf.php">pdf bordereau</a></div>
-    <div><a href="cerfa_pdf.php">pdf cerfa</a></div>
-    
     <!--ajouter des images ou d'autres choses-->
 </body>
 
