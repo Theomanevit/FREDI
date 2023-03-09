@@ -14,8 +14,10 @@ $submit = isset($_POST['submit']);
 
 if($submit){
     $id_nfrais = isset($_POST['id_nfrais']) ? $_POST['id_nfrais'] : NULL;
+    $id_adherant = isset($_POST['id_adherant']) ? $_POST['id_adherant'] : NULL;
 }else{
     $id_nfrais = isset($_GET['id_nfrais']) ? $_GET['id_nfrais'] : NULL;
+    $id_adherant = isset($_POST['id_adherant']) ? $_POST['id_adherant'] : NULL;
     require('backend/CRUD_ligne_frais/ajout_auto_note.php');
 }
 
@@ -54,7 +56,7 @@ try {
         die("Erreur lors de la requête SQL : " . $ex->getMessage());
     }
     if ($sth->rowCount()) {
-        header('location: ligne_notes.php');
+        header("'location: ligne_notes.php?id_nfrais=' . $id_nfrais . '&id_adherant=' . $id_adherant");
     } else {
         echo "<p> Essayez encore ! </p>";
     }
