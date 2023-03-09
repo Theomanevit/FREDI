@@ -99,7 +99,7 @@ try {
       echo "</table>";
       echo '</div>';
 
-      echo '<p><a href="fomulaire_ajout.php?id_nfrais=<?php echo $id_nfrais ?>"> ajouter une ligne de frais<a></p>';
+      echo '<p><a href="fomulaire_ajout.php?id_nfrais=' . $id_nfrais . '"> ajouter une ligne de frais<a></p>';
       echo '<div><p>Création : <a href="bordereau_pdf.php">pdf bordereau</a></p></div>';
     }
   }
