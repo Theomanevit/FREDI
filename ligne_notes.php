@@ -91,8 +91,8 @@ try {
         echo '<td>' . $row['frais_repas'] . ' €</td>';
         echo '<td>' . $row['frais_heber'] . ' €</td>';
         echo '<td>' . $row['total_lfrais']  . ' €</td>';
-        echo '<td><a href="fomulaire_modif.php?id_lfrais=' . $row['id_lfrais'] .'"> modifier<a></td>';
-        echo '<td><a href="fomulaire_suppr.php?id_lfrais=' . $row['id_lfrais'] . '"> supprimer<a></td>';
+        echo '<td><a href="fomulaire_modif.php?id_lfrais=' . $row['id_lfrais'] .'&id_nfrais=' . $id_nfrais . '"> modifier<a></td>';
+        echo '<td><a href="fomulaire_suppr.php?id_lfrais=' . $row['id_lfrais'] .'&id_nfrais=' . $id_nfrais . '"> supprimer<a></td>';
 
         echo "</tr>";
       }

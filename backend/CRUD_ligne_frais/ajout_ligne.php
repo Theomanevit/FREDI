@@ -79,6 +79,11 @@ if ($submit) {
         die("Erreur lors de la requête SQL : " . $ex->getMessage());
     }
 
+
+
+
+
+
     try {
         $sql = "SELECT total_lfrais from lignefrais where id_nfrais = :id_nfrais";
         $params = array(
@@ -106,6 +111,9 @@ if ($submit) {
         die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
     }
 
+
+
+    
     header("location: note_util.php");
 
     

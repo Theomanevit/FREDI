@@ -105,6 +105,8 @@ if ($submit) {
         die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
     }
 
+    
+
     header("location: note_util.php");
 } else {
     try {
