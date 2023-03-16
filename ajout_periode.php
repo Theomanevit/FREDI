@@ -15,7 +15,7 @@ if ($submit) {
         $sth->execute(array(":annee_fisc"=>$annee_fisc,":isactive_fisc"=>$isactive_fisc,":montant_fisc"=>$montant_fisc));
         $nb = $sth->rowcount();
       } catch (PDOException $e) {
-        die( "<p>Erreur lors de la requête SQL : " . $e->getMessmontant_fisc() . "</p>");
+        die( "<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
     }
     $message="$nb periode(s) créée(s)";
 } else {
@@ -36,7 +36,6 @@ if ($submit) {
 <?php echo $message; ?></p>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post"> 
     <p>Année fiscale<br /><input name="annee_fisc" id="annee_fisc" type="text" value="" required/></p>
-    <p>active<br /><input name="isactive_fisc" id="isactive_fisc" type="checkbox" value="1"/></p>
     <p>montant fiscale<br /><input name="montant_fisc" id="montant_fisc" type="text" value="" required/></p>
     <p><input type="submit" name="submit" value="Envoyer" />&nbsp;<input type="reset" value="Réinitialiser" /></p>
 </form>
