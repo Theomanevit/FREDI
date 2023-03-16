@@ -10,7 +10,7 @@ $submit = isset($_POST['submit']);
 // Ajout dans la base
 if ($submit) {
     $id_fisc = $_POST['id_fisc'];
-    $sql="update periodefiscale set annee_fisc=:annee_fisc, isactive_fisc=:isactive_fisc, montant_fisc=:montant_fisc where id_fisc=:id_fisc";
+    $sql="update periodefiscale set isactive_fisc= 0 ; update periodefiscale set annee_fisc=:annee_fisc, isactive_fisc=:isactive_fisc, montant_fisc=:montant_fisc where id_fisc=:id_fisc";
     try {
         $sth = $dbh->prepare($sql);
         $sth->execute(array(":annee_fisc"=>$annee_fisc,":isactive_fisc"=>$isactive_fisc,":montant_fisc"=>$montant_fisc, ":id_fisc"=>$id_fisc));
