@@ -58,6 +58,7 @@ try {
                 echo '<td>' . $row['num_ordre'] . '</td>';
                 echo '<td><button><a href="ligne_notes.php?id_nfrais=' . $row['id_nfrais'] . '&id_adherant=' . $row['id_adherant'] . '">afficher ligne</a></button></td>';
                 echo "</tr>";
+                echo "</table>";
             }
             if (isset($_SESSION['iscontrol'])) {
                 echo '<tr>';
@@ -67,9 +68,14 @@ try {
                 echo '<td>' . $row['num_ordre'] . '</td>';
                 echo '<td><button><a href="ligne_notes.php?id_nfrais=' . $row['id_nfrais'] . '">afficher ligne</a></button></td>';
                 echo "</tr>";
+                echo "</table>";
+                echo "<br>";
+                echo '<button><a href="gerer_periode.php">gérer les periodes</a></button>';
             }
         }
-        echo "</table>";
+
+
+
     } else {
         echo '<p>Aucune note de frais</p>';
         if(!isset($_SESSION['iscontrol']))
