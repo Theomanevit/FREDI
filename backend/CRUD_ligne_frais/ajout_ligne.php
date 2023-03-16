@@ -35,20 +35,25 @@ $submit = isset($_POST['submit']);
 
 if ($submit) {
 
+    if($id_nfrais == NULL){
+        require('backend/CRUD_ligne_frais/ajout_auto_note.php');
+    }
+
+
+    
     try {
-        $sql = "SELECT montant_fisc FROM `periodefiscale` , notefrais WHERE notefrais.id_fisc=periodefiscale.id_fisc and id_nfrais=:id_nfrais";
-        $params = array(
-            "id_nfrais" => $id_nfrais
-        );
+        $sql = "SELECT montant_fisc FROM `periodefiscale`  ";
         $sth = $dbh->prepare($sql);
-        $sth->execute($params);
+        $sth->execute();
         $rows1 = $sth->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
     }
 
     foreach ($rows1 as $row) {
+        $fisc = $row['montant_fisc'];
         $frais_km = $nb_km * $row['montant_fisc'];
+        
     }
 
     $total_lfrais = $frais_km + $frais_peage + $frais_repas + $frais_heber;
@@ -56,7 +61,7 @@ if ($submit) {
 
 
     try {
-        $sql = "INSERT INTO lignefrais (total_lfrais, date_deplace, id_motif, lib_deplace, nb_km, frais_peage, frais_repas, frais_heber, total_lfrais, id_nfrais) VALUES (:date_deplace , :id_motif , :lib_deplace, :nb_km, :frais_peage, :frais_repas, :frais_heber, :total_lfrais, :id_nfrais)";
+        $sql = "INSERT INTO lignefrais (date_deplace, id_motif, lib_deplace, nb_km, frais_peage, frais_repas, frais_heber, total_lfrais, id_nfrais) VALUES (:date_deplace , :id_motif , :lib_deplace, :nb_km, :frais_peage, :frais_repas, :frais_heber, :total_lfrais, :id_nfrais)";
         $params = array(
             ":total_lfrais" => $total_lfrais,
             ":date_deplace" => $date_deplace,
@@ -66,8 +71,7 @@ if ($submit) {
             ":frais_peage" => $frais_peage,
             ":frais_repas" => $frais_repas,
             ":frais_heber" => $frais_heber,
-            ":id_nfrais" => $id_nfrais,
-            ":total_lfrais" => $fisc["montant_fisc"] * $nb_km + $frais_peage + $frais_repas + $frais_heber
+            ":id_nfrais" => $id_nfrais
         );
         $sth = $dbh->prepare($sql);
         $sth->execute($params);
@@ -103,6 +107,6 @@ if ($submit) {
     }
 
     header("location: note_util.php");
-}else{
-    require('backend/CRUD_ligne_frais/ajout_auto_note.php');
+
+    
 }
