@@ -79,6 +79,7 @@ if ($submit) {
         $params = array(
             "id_lfrais" => $id_lfrais
         );
+
         $sth = $dbh->prepare($sql);
         $sth->execute($params);
         $row = $sth->fetch(PDO::FETCH_ASSOC);

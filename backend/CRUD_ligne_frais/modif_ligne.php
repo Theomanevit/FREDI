@@ -108,6 +108,7 @@ if ($submit) {
     header("location: note_util.php");
 } else {
     try {
+
         $sql = "select date_deplace,lib_motif, lignefrais.id_motif, lib_deplace,nb_km,montant_fisc,frais_peage,frais_repas,frais_heber FROM lignefrais , notefrais , periodefiscale , motifdeplacement where motifdeplacement.id_motif = lignefrais.id_motif and lignefrais.id_nfrais = notefrais.id_nfrais and notefrais.id_fisc = periodefiscale.id_fisc and id_lfrais = :id_lfrais";
         $params = array(
             "id_lfrais" => $id_lfrais
