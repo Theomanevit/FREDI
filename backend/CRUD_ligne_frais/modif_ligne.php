@@ -90,8 +90,11 @@ if ($submit) {
         die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
     }
     $sum = 0;
+    $count = count($rows);
     foreach ($rows as $row) {
-        $sum = $row["total_lfrais"] + $sum;
+        for($i=0;$i<$count;$i++){
+            $sum = $row["total_lfrais"] + $sum;
+        }
     }
     try {
         $sql = "UPDATE notefrais set tot_nfrais = :sum where id_nfrais = :id_nfrais";
