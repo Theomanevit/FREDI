@@ -90,22 +90,7 @@ try {
         echo '<td>' . $row['frais_peage'] . ' €</td>';
         echo '<td>' . $row['frais_repas'] . ' €</td>';
         echo '<td>' . $row['frais_heber'] . ' €</td>';
-        $total_lfrais = $frais_km + $row['frais_peage'] + $row['frais_repas'] + $row['frais_heber'];
-
-        try {
-          $sql = "UPDATE lignefrais set total_lfrais = :total_lfrais where id_nfrais = :id_nfrais";
-          $params = array(
-            "total_lfrais" => $total_lfrais,
-            "id_nfrais" => $id_nfrais
-          );
-          $sth = $dbh->prepare($sql);
-          $sth->execute($params);
-          $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-          die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
-        }
-
-        echo '<td>' . $total_lfrais . ' €</td>';
+        echo '<td>' . $row['total_lfrais']  . ' €</td>';
         echo '<td><a href="fomulaire_modif.php?id_lfrais=' . $row['id_lfrais'] .'"> modifier<a></td>';
         echo '<td><a href="fomulaire_suppr.php?id_lfrais=' . $row['id_lfrais'] . '"> supprimer<a></td>';
 
