@@ -29,27 +29,27 @@ require('backend/CRUD_ligne_frais/ajout_ligne.php');
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                     <div class="field padding-bottom--24">
                         <label>Libellé du déplacement</label>
-                        <input type="text" name="lib_deplace" id="lib_deplace" require>
+                        <input type="text" name="lib_deplace" id="lib_deplace" required>
                     </div>
                     <div class="field padding-bottom--24">
                         <label>Date du deplacement</label>
-                        <input type="date" name="date_deplace" id="date_deplace" require>
+                        <input type="date" name="date_deplace" id="date_deplace" required>
                     </div>
                     <div class="field padding-bottom--24">
                         <label>Frais de péage</label>
-                        <input type="text" name="frais_peage" id="frais_peage" require>
+                        <input type="text" name="frais_peage" id="frais_peage" required>
                     </div>
                     <div class="field padding-bottom--24">
                         <label>Frais de repas</label>
-                        <input type="text" name="frais_repas" id="frais_repas" require>
+                        <input type="text" name="frais_repas" id="frais_repas" required>
                     </div>
                     <div class="field padding-bottom--24">
                         <label>Frais d'hebergement</label>
-                        <input type="text" name="frais_heber" id="frais_heber" require>
+                        <input type="text" name="frais_heber" id="frais_heber" required>
                     </div>
                     <div class="field padding-bottom--24">
                         <label>Nombre de kilomètre</label>
-                        <input type="text" name="nb_km" id="nb_km" require>
+                        <input type="text" name="nb_km" id="nb_km" required>
                     </div>
                     <div class="field padding-bottom--24">
                         <label>Motif</label>
