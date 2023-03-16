@@ -56,7 +56,7 @@ try {
                 }
                 echo '<td>' . $row['montant_fisc'] . '</td>';
                 if ($row['isactive_fisc']==0){
-                    echo '<td><button><a href="activer_periode.php?id_fisc=' . $row['id_fisc'] . '&id_adherant=' . $row['id_adherant'] . '">activer</a></button></td>';
+                    echo '<td><button><a href="activer_periode.php?id_fisc=' . $row['id_fisc'] . '">activer</a></button></td>';
                 }
                 echo "</tr>";
                 
