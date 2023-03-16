@@ -108,12 +108,13 @@ try {
         echo '<td>' . $total_lfrais . ' €</td>';
         echo '<td><a href="fomulaire_modif.php?id_lfrais=' . $row['id_lfrais'] .'"> modifier<a></td>';
         echo '<td><a href="fomulaire_suppr.php?id_lfrais=' . $row['id_lfrais'] . '"> supprimer<a></td>';
+
         echo "</tr>";
       }
       echo "</table>";
       echo '</div>';
 
-      echo '<p><a href="fomulaire_ajout.php?id_nfrais=' . $id_nfrais . '"> ajouter une ligne de frais<a></p>';
+      echo '<p><a href="fomulaire_ajout.php?id_nfrais=' . $id_nfrais . '&id_adherant=' . $id_adherant . '"> ajouter une ligne de frais<a></p>';
       echo '<div><p>Création : <a href="bordereau_pdf.php">pdf bordereau</a></p></div>';
     }
   }

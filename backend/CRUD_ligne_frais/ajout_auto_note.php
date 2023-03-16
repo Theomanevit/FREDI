@@ -21,9 +21,11 @@
         }
 
         try {
+            $date = date('y-m-d');
             $sql_insert_note = "INSERT INTO notefrais(isvalid, tot_nfrais, date_ordre, num_ordre, id_adherant, id_fisc)
-            VALUES(0, 0, '0000-00-00', 0, :id_adherant, :id_fisc)";
+            VALUES(0, 0, ':date', 0, :id_adherant, :id_fisc)";
             $params = array(
+                ":date" => $date,
                 ":id_adherant" => $row_adherant["id_adherant"],
                 ":id_fisc" => $row_fisc["id_fisc"],
             );

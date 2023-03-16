@@ -38,24 +38,6 @@ require('backend/connectionBdd.php');
 if ($submit) {
 
     try {
-        $sql = "UPDATE lignefrais set date_deplace=:date_deplace, id_motif=:id_motif, lib_deplace=:lib_deplace, nb_km=:nb_km, frais_peage=:frais_peage, frais_repas=:frais_repas, frais_heber=:frais_heber where id_lfrais=:id_lfrais";
-        $params = array(
-            ":id_lfrais" => $id_lfrais,
-            ":date_deplace" => $date_deplace,
-            ":id_motif" => $id_motif,           // Raison du déplacement
-            ":lib_deplace" => $lib_deplace,     // Le nom du trajet ville - ville
-            ":nb_km" => $nb_km,
-            ":frais_peage" => $frais_peage,
-            ":frais_repas" => $frais_repas,
-            ":frais_heber" => $frais_heber
-        );
-        $sth = $dbh->prepare($sql);
-        $sth->execute($params);
-    } catch (PDOException $ex) {
-        die("Erreur lors de la requête SQL : " . $ex->getMessage());
-    }
-
-    try {
         $sql = "SELECT montant_fisc FROM `periodefiscale` , notefrais WHERE notefrais.id_fisc=periodefiscale.id_fisc and id_nfrais=:id_nfrais";
         $params = array(
             "id_nfrais" => $id_nfrais
@@ -74,17 +56,27 @@ if ($submit) {
     $total_lfrais = $frais_km + $frais_peage + $frais_repas + $frais_heber;
 
     try {
-        $sql = "UPDATE lignefrais set total_lfrais = :total_lfrais where id_nfrais = :id_nfrais";
+        $sql = "UPDATE lignefrais set total_lfrais=:total_lfrais, date_deplace=:date_deplace, id_motif=:id_motif, lib_deplace=:lib_deplace, nb_km=:nb_km, frais_peage=:frais_peage, frais_repas=:frais_repas, frais_heber=:frais_heber where id_lfrais=:id_lfrais";
         $params = array(
-            "total_lfrais" => $total_lfrais,
-            "id_nfrais" => $id_nfrais
+            ":total_lfrais" => $total_lfrais,
+            ":id_lfrais" => $id_lfrais,
+            ":date_deplace" => $date_deplace,
+            ":id_motif" => $id_motif,           // Raison du déplacement
+            ":lib_deplace" => $lib_deplace,     // Le nom du trajet ville - ville
+            ":nb_km" => $nb_km,
+            ":frais_peage" => $frais_peage,
+            ":frais_repas" => $frais_repas,
+            ":frais_heber" => $frais_heber
         );
         $sth = $dbh->prepare($sql);
         $sth->execute($params);
-        $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+    } catch (PDOException $ex) {
+        die("Erreur lors de la requête SQL : " . $ex->getMessage());
     }
+
+    
+
+
 
     try {
         $sql = "SELECT total_lfrais from lignefrais where id_nfrais = :id_nfrais";
@@ -116,9 +108,13 @@ if ($submit) {
     header("location: note_util.php");
 } else {
     try {
-        $sql = "select date_deplace,lib_motif, lignefrais.id_motif, lib_deplace,nb_km,montant_fisc,frais_peage,frais_repas,frais_heber FROM lignefrais , notefrais , periodefiscale , motifdeplacement where motifdeplacement.id_motif = lignefrais.id_motif and lignefrais.id_nfrais = notefrais.id_nfrais and notefrais.id_fisc = periodefiscale.id_fisc and id_lfrais =:id_lfrais";
+
+        $sql = "select date_deplace,lib_motif, lignefrais.id_motif, lib_deplace,nb_km,montant_fisc,frais_peage,frais_repas,frais_heber FROM lignefrais , notefrais , periodefiscale , motifdeplacement where motifdeplacement.id_motif = lignefrais.id_motif and lignefrais.id_nfrais = notefrais.id_nfrais and notefrais.id_fisc = periodefiscale.id_fisc and id_lfrais = :id_lfrais";
+        $params = array(
+            "id_lfrais" => $id_lfrais
+        );
         $sth = $dbh->prepare($sql);
-        $sth->execute(array(":id_lfrais" => $id_lfrais));
+        $sth->execute($params);
         $row = $sth->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $ex) {
         die("<p>Erreur lors de la requête SQL : " . $ex->getMessage() . "</p>");

@@ -67,7 +67,9 @@ require('backend/CRUD_ligne_frais/ajout_ligne.php');
                         </select>
                     </div>
                     <div>
-                        <input name="id_nfrais" id="id_nfrais" type="hidden" value="<?php echo $id_nfrais; ?>" />
+                        <div><input name="id_nfrais" id="id_nfrais" type="hidden" value="<?php echo $id_nfrais; ?>" /></div>
+                        <div><input name="id_adherant" id="id_adherant" type="hidden" value="<?php echo $id_adherant; ?>" /></div>
+                        <div><input name="id_lfrais" id="id_lfrais" type="hidden" value="<?php echo $id_lfrais; ?>" /></div>
                     </div>
                     <div class="field padding-bottom--24">
                         <input type="submit" name="submit" value="Validée" />
