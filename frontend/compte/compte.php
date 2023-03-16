@@ -47,7 +47,7 @@ try {
     if (isset($_SESSION['id_util'])) {
     ?>
         <?php include('../../header.php') ?>
-        <h1 class="centre">Compte</h1>
+        <h1>Compte</h1>
         <div class="formbg-outer">
             <div class="formbg">
                 <div class="formbg-inner padding-horizontal--48">

@@ -39,6 +39,8 @@ try {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Liste des notes utilisateurs</title>
     <link rel="stylesheet" href="css/tableau.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/connexion.css">
 </head>
 
 <body>
@@ -46,8 +48,8 @@ try {
     <h1>Liste des notes utilisateurs</h1>
     <?php
     if (count($rows) > 0) {
-        echo '<table>';
-        echo '<tr><th>idantifiant note</th><th>frais total</th><th>date ordre</th><th>numero ordre</th><th></th></tr>';
+        echo '<div class="formbg2"><table>';
+        echo '<tr><th>Idantifiant note</th><th>Frais total</th><th>Date ordre</th><th>Numero ordre</th><th></th></tr>';
         foreach ($rows as $row) {
 
             if (!isset($_SESSION['isadmin']) && !isset($_SESSION['iscontrol'])) {
@@ -68,7 +70,7 @@ try {
                 echo '<td>' . $row['num_ordre'] . '</td>';
                 echo '<td><button><a href="ligne_notes.php?id_nfrais=' . $row['id_nfrais'] . '">afficher ligne</a></button></td>';
                 echo "</tr>";
-                echo "</table>";
+                echo "</table></div></div></div>";
                 echo "<br>";
                 echo '<button><a href="gerer_periode.php">gérer les periodes</a></button>';
             }
