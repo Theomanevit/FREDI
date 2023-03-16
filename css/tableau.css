@@ -38,3 +38,7 @@ tr:nth-child(odd) {
 tr:nth-child(even) {
   background-color: white;
 }
+
+h1 {
+  text-align: center;
+}
