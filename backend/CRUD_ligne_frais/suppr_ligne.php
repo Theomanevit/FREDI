@@ -12,24 +12,75 @@ $submit = isset($_POST['submit']);
 
 require('backend/connectionBdd.php');
 
+if (isset($_GET['id_nfrais'])) {
+    $id_nfrais = isset($_GET['id_nfrais']) ? $_GET['id_nfrais'] : '';
+} else {
+    $id_nfrais = isset($_POST['id_nfrais']) ? $_POST['id_nfrais'] : '';
+}
+
+if (isset($_GET['id_adherant'])) {
+    $id_adherant = isset($_GET['id_adherant']) ? $_GET['id_adherant'] : '';
+} else {
+    $id_adherant = isset($_POST['id_adherant']) ? $_POST['id_adherant'] : '';
+}
+
+if (isset($_GET['id_lfrais'])) {
+    $id_lfrais = isset($_GET['id_lfrais']) ? $_GET['id_lfrais'] : '';
+} else {
+    $id_lfrais = isset($_POST['id_lfrais']) ? $_POST['id_lfrais'] : '';
+}
+
 if ($submit) {
 
     try {
-        $id_lfrais = $_POST['id_lfrais'];
         $sql = "DELETE FROM lignefrais where id_lfrais=:id_lfrais";
         $params = array(
-            ":id_lfrais" => $id_lfrais);
+            ":id_lfrais" => $id_lfrais
+        );
         $sth = $dbh->prepare($sql);
         $sth->execute($params);
     } catch (PDOException $ex) {
         die("Erreur lors de la requête SQL : " . $ex->getMessage());
     }
+
+
+    try {
+        $sql = "SELECT total_lfrais from lignefrais where id_nfrais = :id_nfrais";
+        $params = array(
+            "id_nfrais" => $id_nfrais
+        );
+        $sth = $dbh->prepare($sql);
+        $sth->execute($params);
+        $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+    }
+    $sum = 0;
+    foreach ($rows as $row) {
+        $sum = $row["total_lfrais"] + $sum;
+    }
+    try {
+        $sql = "UPDATE notefrais set tot_nfrais = :sum where id_nfrais = :id_nfrais";
+        $params = array(
+            "sum" => $sum,
+            "id_nfrais" => $id_nfrais
+        );
+        $sth = $dbh->prepare($sql);
+        $sth->execute($params);
+    } catch (PDOException $e) {
+        die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+    }
+
+
+    header("location: note_util.php");
 } else {
     try {
-        $id_lfrais = $_GET['id_lfrais'];
-        $sql = "select date_deplace,lib_motif, lignefrais.id_motif, lib_deplace,nb_km,montant_fisc,frais_peage,frais_repas,frais_heber FROM lignefrais , notefrais , periodefiscale , motifdeplacement where motifdeplacement.id_motif = lignefrais.id_motif and lignefrais.id_nfrais = notefrais.id_nfrais and notefrais.id_fisc = periodefiscale.id_fisc";
+        $sql = "select date_deplace,lib_motif, lignefrais.id_motif, lib_deplace,nb_km,montant_fisc,frais_peage,frais_repas,frais_heber FROM lignefrais , notefrais , periodefiscale , motifdeplacement where motifdeplacement.id_motif = lignefrais.id_motif and lignefrais.id_nfrais = notefrais.id_nfrais and notefrais.id_fisc = periodefiscale.id_fisc and id_lfrais = :id_lfrais";
+        $params = array(
+            "id_lfrais" => $id_lfrais
+        );
         $sth = $dbh->prepare($sql);
-        $sth->execute(array(":id_lfrais" => $id_lfrais));
+        $sth->execute($params);
         $row = $sth->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $ex) {
         die("<p>Erreur lors de la requête SQL : " . $ex->getMessage() . "</p>");
@@ -41,6 +92,6 @@ if ($submit) {
     $frais_peage = $row['frais_peage'];
     $frais_repas = $row["frais_repas"];
     $frais_heber = $row['frais_heber'];
-  
+
     $message = "Veuillez réaliser la suppression de l'ID $id_lfrais SVP";
 }

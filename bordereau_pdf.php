@@ -33,6 +33,9 @@ try {
 
 $id_nfrais=$row["id_nfrais"];
 
+
+
+
 try {
     $sql = "SELECT date_deplace,lib_motif,lib_deplace , nb_km,nb_km*montant_fisc as total_frais_km  , frais_peage,frais_repas,frais_heber,total_lfrais 
     FROM notefrais,utilisateur,adherant,motifdeplacement,lignefrais,periodefiscale 
