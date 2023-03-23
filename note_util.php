@@ -63,8 +63,8 @@ try {
                 }
             }
             if (isset($_SESSION['iscontrol'])) {
-                foreach ($rows as $row) {
                 echo '<tr><th>Note de frais validée ?</th><th>idantifiant note</th><th>frais total</th><th>date ordre</th><th>numero ordre</th><th></th><th></th></tr>';
+                foreach ($rows as $row) {
                 echo '<tr>';
                 echo '<td>' . $row['isvalid'] . '</td>';
                 echo '<td>' . $row['id_nfrais'] . '</td>';
