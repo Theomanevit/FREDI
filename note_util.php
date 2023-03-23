@@ -70,7 +70,6 @@ try {
                 echo "</tr>";
                 echo "</table>";
                 echo "<br>";
-                echo '<button><a href="gerer_periode.php">gérer les periodes</a></button>';
             }
         }
 
