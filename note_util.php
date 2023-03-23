@@ -48,10 +48,11 @@ try {
     if (count($rows) > 0) {
         echo '<table>';
 
-        foreach ($rows as $row) {
+       
 
             if (!isset($_SESSION['isadmin']) && !isset($_SESSION['iscontrol'])) {
                 echo '<tr><th>idantifiant note</th><th>frais total</th><th>date ordre</th><th>numero ordre</th><th></th></tr>';
+                foreach ($rows as $row) {
                 echo '<tr>';
                 echo '<td>' . $row['id_nfrais'] . '</td>';
                 echo '<td>' . $row['tot_nfrais'] . '</td>';
@@ -59,9 +60,10 @@ try {
                 echo '<td>' . $row['num_ordre'] . '</td>';
                 echo '<td><button><a href="ligne_notes.php?id_nfrais=' . $row['id_nfrais'] . '&id_adherant=' . $row['id_adherant'] . '">afficher ligne</a></button></td>';
                 echo "</tr>";
-                echo "</table>";
+                }
             }
             if (isset($_SESSION['iscontrol'])) {
+                foreach ($rows as $row) {
                 echo '<tr><th>Note de frais validée ?</th><th>idantifiant note</th><th>frais total</th><th>date ordre</th><th>numero ordre</th><th></th><th></th></tr>';
                 echo '<tr>';
                 echo '<td>' . $row['isvalid'] . '</td>';
@@ -74,9 +76,9 @@ try {
                     echo '<td><button><a href="valider_note_frais.php?id_nfrais=' . $row['id_nfrais'] . '">Valider note de frais</a></button></td>';
                 }
                 echo "</tr>";
-                echo "</table>";
-                echo "<br>";
             }
+            echo "</table>";
+            echo "<br>";
         }
 
 

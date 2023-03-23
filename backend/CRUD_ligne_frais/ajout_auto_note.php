@@ -1,4 +1,5 @@
 <?php
+
         $id_util = $_SESSION['id_util'];
 
 
@@ -26,13 +27,9 @@
         }
 
 
-        foreach($row_adherant as $row){
             $id_adherant = $row_adherant["id_adherant"];
-        }
 
-        foreach($row_fisc as $row){
             $id_fisc = $row_fisc["id_fisc"];
-        }
 
         
 
@@ -61,7 +58,7 @@
 
 
         try {
-            $sql_get_id_nfrais = "SELECT id_nfrais from notefrais as nf, periodefiscale as pf where nf.id_fisc = pf.id_fisc and id_adherant = :id_adherant and isactive_fisc = 1";
+            $sql_get_id_nfrais = "SELECT MAX(id_nfrais) as id_nfrais from notefrais as nf, periodefiscale as pf where nf.id_fisc = pf.id_fisc and id_adherant = :id_adherant and isactive_fisc = 1";
             $params = array(
                 ":id_adherant" => $id_adherant
             );

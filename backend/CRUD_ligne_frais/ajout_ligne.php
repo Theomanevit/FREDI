@@ -59,7 +59,7 @@ if ($submit) {
     $total_lfrais = $frais_km + $frais_peage + $frais_repas + $frais_heber;
 
 
-
+    
     try {
         $sql = "INSERT INTO lignefrais (date_deplace, id_motif, lib_deplace, nb_km, frais_peage, frais_repas, frais_heber, total_lfrais, id_nfrais) VALUES (:date_deplace , :id_motif , :lib_deplace, :nb_km, :frais_peage, :frais_repas, :frais_heber, :total_lfrais, :id_nfrais)";
         $params = array(
