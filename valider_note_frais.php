@@ -1,4 +1,7 @@
 <?php
+session_start();
+
+
 $isvalid = isset($_POST['isvalid']) ? $_POST['isvalid'] : '';
 $id_nfrais = isset($_POST['id_nfrais']) ? $_POST['id_nfrais'] : '';
 $tot_nfrais = isset($_POST['tot_nfrais']) ? $_POST['tot_nfrais'] : '';
@@ -47,7 +50,7 @@ try {
     );
     $sth = $dbh->prepare($sql);
     $sth->execute($params);
-    $row = $sth->fetchAll(PDO::FETCH_ASSOC);
+    $row = $sth->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
 }
@@ -55,16 +58,17 @@ try {
 if ($submit) {
 
     try {
-        $sql = "UPDATE notefrais set isvalid = :isvalid where id_lfrais=:id_lfrais";
+        $sql = "UPDATE notefrais set isvalid = :isvalid where id_nfrais=:id_nfrais";
         $params = array(
             ":isvalid" => $isvalid,
-            ":id_lfrais" => $id_lfrais,
+            ":id_nfrais" => $id_nfrais,
         );
         $sth = $dbh->prepare($sql);
         $sth->execute($params);
     } catch (PDOException $ex) {
         die("Erreur lors de la requête SQL : " . $ex->getMessage());
     }
+    header("location: note_util.php");
 }
 ?>
 
@@ -80,6 +84,8 @@ if ($submit) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Validation note de frais</title>
+    <link rel="stylesheet" href="css/connexion.css">
+    <link rel="stylesheet" href="css/tableau.css">
 </head>
 
 <body>
@@ -91,7 +97,10 @@ if ($submit) {
                 <form action="<?php echo $_SERVER['PHP_SELF'].'?id_nfrais='.$id_nfrais.'';?>" method="post">
                     <div class="field padding-bottom--24">
                         <label>Note de frais validé ?</label>
-                        <input type="text" name="isvalid" id="isvalid" value="<?php echo $isvalid ?>" required>
+                        <select name="isvalid" id="isvalid" value=<?php echo $row['isvalid'] ?> required>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                        </select>
                     </div>
                     <div class="field padding-bottom--24">
                         <label>id note de frais</label>
@@ -99,11 +108,11 @@ if ($submit) {
                     </div>
                     <div class="field padding-bottom--24">
                         <label>Frais total</label>
-                        <input type="text" name="tot_nfrais" id="tot_nfrais" value="<?php echo $tot_nfrais ?>" disabled>
+                        <input type="text" name="tot_nfrais" id="tot_nfrais" value="<?php echo $row['tot_nfrais'] ?>" disabled>
                     </div>
                     <div class="field padding-bottom--24">
                         <label>Numéro ordre</label>
-                        <input type="text" name="num_ordre" id="num_ordre" value="<?php echo $num_ordre ?>" disabled>
+                        <input type="text" name="num_ordre" id="num_ordre" value="<?php echo $row['num_ordre'] ?>" disabled>
                     </div>
                     <div class="field padding-bottom--24">
                         <input type="submit" name="submit" value="Validée" />
