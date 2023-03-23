@@ -87,7 +87,7 @@ CREATE TABLE adherant(
 
 CREATE TABLE noteFrais(
         id_nfrais   Int  Auto_increment  NOT NULL ,
-        isvalid     Bool NOT NULL ,
+      
         tot_nfrais  Decimal (10,2) NOT NULL ,
         date_ordre  Date NOT NULL ,
         num_ordre   Int NOT NULL ,
@@ -98,6 +98,10 @@ CREATE TABLE noteFrais(
 	,CONSTRAINT noteFrais_adherant_FK FOREIGN KEY (id_adherant) REFERENCES adherant(id_adherant)
 	,CONSTRAINT noteFrais_periodeFiscale0_FK FOREIGN KEY (id_fisc) REFERENCES periodeFiscale(id_fisc)
 )ENGINE=InnoDB;
+
+ALTER TABLE noteFrais
+isvalid Bool NOT NULL 
+CONSTRAINT valeur_par_defaut DEFAULT 0;
 
 
 #------------------------------------------------------------
