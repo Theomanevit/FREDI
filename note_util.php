@@ -82,6 +82,7 @@ try {
             echo '<a href="fomulaire_ajout.php">[ajouter une ligne de frais]</a>';
     }
     if (isset($_SESSION['iscontrol'])) {
+        echo '<button><a href="gerer_periode.php">gérer les periodes</a></button>';
         echo '<div><p>Création : <a href="cumul_frais_pdf.php">pdf cumul des frais</a></p></div>';
     }
     ?>
