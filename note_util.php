@@ -11,13 +11,13 @@ $filename = $tableau['basename'];
 require("backend/connectionBdd.php");
 
 if (isset($_SESSION['iscontrol'])) {
-    $sql = 'select id_nfrais, tot_nfrais, date_ordre, num_ordre from notefrais as nf, periodefiscale as pf where nf.id_fisc = pf.id_fisc and isactive_fisc= 1';
+    $sql = 'select isvalid, id_nfrais, tot_nfrais, date_ordre, num_ordre from notefrais as nf, periodefiscale as pf where nf.id_fisc = pf.id_fisc and isactive_fisc= 1';
 }
 if (isset($_SESSION['isadmin'])) {
     header("location: index.php");
 }
 if (!isset($_SESSION['isadmin']) && !isset($_SESSION['iscontrol'])) {
-    $sql = 'select id_nfrais, tot_nfrais, date_ordre, num_ordre, nf.id_adherant from notefrais as nf, adherant as a, periodefiscale as pf where nf.id_adherant = a.id_adherant and nf.id_fisc = pf.id_fisc and a.id_util= ' . $_SESSION["id_util"] . ' and isactive_fisc= 1';
+    $sql = 'select isvalid, id_nfrais, tot_nfrais, date_ordre, num_ordre, nf.id_adherant from notefrais as nf, adherant as a, periodefiscale as pf where nf.id_adherant = a.id_adherant and nf.id_fisc = pf.id_fisc and a.id_util= ' . $_SESSION["id_util"] . ' and isactive_fisc= 1 and isvalid = 0';
 }
 
 try {
@@ -47,10 +47,11 @@ try {
     <?php
     if (count($rows) > 0) {
         echo '<table>';
-        echo '<tr><th>idantifiant note</th><th>frais total</th><th>date ordre</th><th>numero ordre</th><th></th></tr>';
+
         foreach ($rows as $row) {
 
             if (!isset($_SESSION['isadmin']) && !isset($_SESSION['iscontrol'])) {
+                echo '<tr><th>idantifiant note</th><th>frais total</th><th>date ordre</th><th>numero ordre</th><th></th></tr>';
                 echo '<tr>';
                 echo '<td>' . $row['id_nfrais'] . '</td>';
                 echo '<td>' . $row['tot_nfrais'] . '</td>';
@@ -61,12 +62,15 @@ try {
                 echo "</table>";
             }
             if (isset($_SESSION['iscontrol'])) {
+                echo '<tr><th>Note de frais validée ?</th><th>idantifiant note</th><th>frais total</th><th>date ordre</th><th>numero ordre</th><th></th><th></th></tr>';
                 echo '<tr>';
+                echo '<td>' . $row['isvalid'] . '</td>';
                 echo '<td>' . $row['id_nfrais'] . '</td>';
                 echo '<td>' . $row['tot_nfrais'] . '</td>';
                 echo '<td>' . $row['date_ordre'] . '</td>';
                 echo '<td>' . $row['num_ordre'] . '</td>';
                 echo '<td><button><a href="ligne_notes.php?id_nfrais=' . $row['id_nfrais'] . '">afficher ligne</a></button></td>';
+                echo '<td><button><a href="valider_note_frais.php?id_nfrais=' . $row['id_nfrais'] . '">Valider note de frais</a></button></td>';
                 echo "</tr>";
                 echo "</table>";
                 echo "<br>";
