@@ -32,6 +32,12 @@ if ($submit) {
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+<?php
+    if (isset($_SESSION['id_util'])) {
+        header("Location: index.php");
+    } else {
+    ?>
+        <?php include('header.php') ?>
 <h1>ajouter une periode fiscale</h1>
 <?php echo $message; ?></p>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post"> 
@@ -39,6 +45,7 @@ if ($submit) {
     <p>montant fiscale<br /><input name="montant_fisc" id="montant_fisc" type="text" value="" required/></p>
     <p><input type="submit" name="submit" value="Envoyer" />&nbsp;<input type="reset" value="Réinitialiser" /></p>
 </form>
-<p>Liste des <a href="gerer_periode.php">periodes</a></p>        
+<p>Liste des <a href="gerer_periode.php">periodes</a></p>    
+<?php } ?>    
 </body>
 </html>
