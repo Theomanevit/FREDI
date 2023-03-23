@@ -103,6 +103,7 @@ try {
       echo '<div><p>Création : <a href="bordereau_pdf.php">pdf bordereau</a></p></div>';
     }
   }
+
   //Affichage tableau pour le contrôleur
   if (isset($_SESSION['iscontrol'])) {
 
@@ -148,8 +149,6 @@ try {
       echo '<div><p>Création : <a href="cerfa_pdf.php">pdf cerfa</a></p></div>';
       // mettre insert total ligne
     }
-  } else {
-    echo "<p>Rien à afficher</p>";
   }
   ?>
 

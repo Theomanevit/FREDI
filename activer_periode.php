@@ -1,4 +1,5 @@
 <?php
+session_start();
 require('backend/connectionBdd.php');
 
 $id_fisc = isset($_GET['id_fisc']) ? $_GET['id_fisc'] : '';
@@ -45,6 +46,12 @@ if ($submit) {
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+<?php
+    if (!isset($_SESSION['id_util'])) {
+        header("Location: index.php");
+    } else {
+    ?>
+        <?php include('header.php') ?>
 <h1>ativer periode fiscale</h1>
 <?php echo $message; ?></p>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post"> 
@@ -55,5 +62,6 @@ if ($submit) {
     <p><input type="submit" name="submit" value="Envoyer" />&nbsp;<input type="reset" value="Réinitialiser" /></p>
 </form>
 <p>Liste des <a href="gerer_periode.php">periodes fiscales</a></p>        
+<?php } ?>  
 </body>
 </html>

@@ -23,14 +23,16 @@ include('init.php');
                 echo '<span class="line -bottom"></span></button></section>';
                 echo '</div>';
 
-                echo '<div class="open-btn">';
-                echo '<section class="portfolio-experiment droite"><a href="' . FRONTEND_COMPTE . '\compte.php">';
-                echo '<span class="text">Compte</span>';
-                echo '<span class="line -right"></span>';
-                echo '<span class="line -top"></span>';
-                echo '<span class="line -left"></span>';
-                echo '<span class="line -bottom"></span></a></section>';
-                echo '</div>';
+                if (!isset($_SESSION['iscontrol'])&&!isset($_SESSION['isadmin'])) {
+                    echo '<div class="open-btn">';
+                    echo '<section class="portfolio-experiment droite"><a href="' . FRONTEND_COMPTE . '\compte.php">';
+                    echo '<span class="text">Compte</span>';
+                    echo '<span class="line -right"></span>';
+                    echo '<span class="line -top"></span>';
+                    echo '<span class="line -left"></span>';
+                    echo '<span class="line -bottom"></span></a></section>';
+                    echo '</div>';
+                }
 
 
                 if (isset($_SESSION['isadmin'])) {

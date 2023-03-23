@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require('backend/connectionBdd.php');
 // Liste des periodes
@@ -33,7 +34,7 @@ if ($submit) {
 </head>
 <body>
 <?php
-    if (isset($_SESSION['id_util'])) {
+    if (!isset($_SESSION['id_util'])) {
         header("Location: index.php");
     } else {
     ?>
