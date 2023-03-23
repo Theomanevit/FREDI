@@ -11,7 +11,12 @@ $filename = $tableau['basename'];
 require("backend/connectionBdd.php");
 
 if (isset($_SESSION['iscontrol'])) {
-    $sql = 'select isvalid, id_nfrais, tot_nfrais, date_ordre, num_ordre from notefrais as nf, periodefiscale as pf where nf.id_fisc = pf.id_fisc and isactive_fisc= 1';
+    $sql = 'select pseudo_util , isvalid, id_nfrais, tot_nfrais, date_ordre, num_ordre 
+    from notefrais as nf, periodefiscale as pf , adherant as ad , utilisateur as ut
+    where nf.id_fisc = pf.id_fisc
+    and nf.id_adherant = ad.id_adherant
+    and ad.id_util = ut.id_util
+    and isactive_fisc= 1';
 }
 if (isset($_SESSION['isadmin'])) {
     header("location: index.php");
@@ -63,9 +68,10 @@ try {
                 }
             }
             if (isset($_SESSION['iscontrol'])) {
-                echo '<tr><th>Note de frais validée ?</th><th>idantifiant note</th><th>frais total</th><th>date ordre</th><th>numero ordre</th><th></th><th></th></tr>';
+                echo '<tr><th>utilisateur</th><th>Note de frais validée ?</th><th>idantifiant note</th><th>frais total</th><th>date ordre</th><th>numero ordre</th><th></th><th></th></tr>';
                 foreach ($rows as $row) {
                 echo '<tr>';
+                echo '<td>' . $row['pseudo_util']  . '</td>';
                 echo '<td>' . $row['isvalid'] . '</td>';
                 echo '<td>' . $row['id_nfrais'] . '</td>';
                 echo '<td>' . $row['tot_nfrais'] . '</td>';
