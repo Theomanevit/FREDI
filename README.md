@@ -34,3 +34,9 @@ l' administrateur a accès à :
 - la liste des utilisateur
 - peut modifier le rôle d'un utilisateur
 
+# API JSON :
+
+URL pour appeler l'API JSON de FREDI : http://localhost/projets/FREDI/api/note_json.php?email=test@gmail.com&password=test
+
+
+
