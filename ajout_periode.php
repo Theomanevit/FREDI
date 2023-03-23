@@ -31,6 +31,8 @@ if ($submit) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ajouter une periode fiscale</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/connexion.css">
+    <link rel="stylesheet" href="css/tableau.css">
 </head>
 <body>
 <?php
@@ -40,13 +42,30 @@ if ($submit) {
     ?>
         <?php include('header.php') ?>
 <h1>ajouter une periode fiscale</h1>
-<?php echo $message; ?></p>
+
+<div class="formbg-outer">
+        <div class="formbg">
+            <div class="formbg-inner padding-horizontal--48">
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post"> 
-    <p>Année fiscale<br /><input name="annee_fisc" id="annee_fisc" type="text" value="" required/></p>
-    <p>montant fiscale<br /><input name="montant_fisc" id="montant_fisc" type="text" value="" required/></p>
-    <p><input type="submit" name="submit" value="Envoyer" />&nbsp;<input type="reset" value="Réinitialiser" /></p>
-</form>
-<p>Liste des <a href="gerer_periode.php">periodes</a></p>    
+    <div class="field padding-bottom--24">
+        <label><?php echo $message." : "; ?></label><br>
+        <label>Année fiscale</label>
+        <input name="annee_fisc" id="annee_fisc" type="text" value="" required/>
+    </div>
+    <div class="field padding-bottom--24">
+        <label>Montant fiscale</label>
+        <input name="montant_fisc" id="montant_fisc" type="text" value="" required/>
+    </div>
+    <div class="field padding-bottom--24">
+        <input type="submit" name="submit" value="Validée" />
+            </div>
+            <div class="field padding-bottom--24">
+        <label>Liste des <a href="gerer_periode.php">periodes</a></label>
+    </div>
+            </form>
+        </div>
+    </div>
+</div> 
 <?php } ?>    
 </body>
 </html>
