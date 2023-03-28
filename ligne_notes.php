@@ -146,7 +146,7 @@ try {
       }
       echo "</table>";
       echo '</div>';
-      echo '<div><p>Création : <a href="cerfa_pdf.php">pdf cerfa</a></p></div>';
+      echo '<div><p>Création : <a href="cerfa_pdf.php?id_nfrais='.$id_nfrais.'">pdf cerfa</a></p></div>';
       // mettre insert total ligne
     }
   }

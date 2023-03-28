@@ -44,41 +44,42 @@ $pdf->SetSubject('cerfa', true);
 $pdf->addPage();
 $pdf->useImportedPage($pageId);
 
-$pdf->SetFont('Helvetica', '', 10);
-$pdf->SetXY(10, 37);
-$pdf->Write(0, utf8_decode($row["lib_club"]));
+    $pdf->SetFont('Helvetica', '', 10); 
+    $pdf->SetXY(10, 37);
+    $pdf->Write(0, utf8_decode($row["lib_club"]));
 
-$pdf->SetFont('Helvetica', '', 10);
-$pdf->SetXY(15, 45);
-$pdf->Write(0, "                     ".utf8_decode($row["adresse_club"]));
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->SetXY(15, 45);
+    $pdf->Write(0, "                     ".utf8_decode($row["adresse_club"]));
 
-$pdf->SetFont('Helvetica', '', 10);
-$pdf->SetXY(30, 50);
-$pdf->Write(0, utf8_decode($row["cp_club"])."                            ".utf8_decode($row["ville_club"]));
+    $pdf->SetFont('Helvetica', '', 10); 
+    $pdf->SetXY(30, 50);
+    $pdf->Write(0, utf8_decode($row["cp_club"])."                            ".utf8_decode($row["ville_club"]));
 
-$pdf->SetFont('Helvetica', '', 10);
-$pdf->SetXY(25, 57);
-$pdf->Write(0, utf8_decode($row["lib_ligue"]));
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->SetXY(25, 57);
+    $pdf->Write(0, utf8_decode($row["lib_ligue"]));
 
-$pdf->SetFont('Helvetica', '', 20);
-$pdf->SetXY(10, 75);
-$pdf->Write(0, "X");
+    $pdf->SetFont('Helvetica', '', 20);
+    $pdf->SetXY(10, 75);
+    $pdf->Write(0, "X");
 
-$pdf->SetFont('Helvetica', '', 10);
-$pdf->SetXY(12, 167);
-$pdf->Write(0, utf8_decode($row["nom_util"])."   ".utf8_decode($row["prenom_util"]));
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->SetXY(12, 167);
+    $pdf->Write(0, utf8_decode($row["nom_util"])."   ".utf8_decode($row["prenom_util"]));
 
-$pdf->SetFont('Helvetica', '', 10);
-$pdf->SetXY(12, 175);
-$pdf->Write(0, utf8_decode($row["adresse"]));
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->SetXY(12, 175);
+    $pdf->Write(0, utf8_decode($row["adresse"]));
 
-$pdf->SetFont('Helvetica', '', 10);
-$pdf->SetXY(30, 180);
-$pdf->Write(0, utf8_decode($row["cp"]));
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->SetXY(30, 180);
+    $pdf->Write(0, utf8_decode($row["cp"]));
 
-$pdf->SetFont('Helvetica', '', 10);
-$pdf->SetXY(70, 180);
-$pdf->Write(0, utf8_decode($row["ville"]));
+    $pdf->SetFont('Helvetica', '', 10);
+    $pdf->SetXY(70, 180);
+    $pdf->Write(0, utf8_decode($row["ville"]));
 
-$pdf->Output('F', 'outfiles/cerfa_'.$row["nom_util"].'_'.$row["prenom_util"].'.pdf');
-header('Location: index.php');
+    $pdf->Output('F', 'outfiles/cerfa_'.utf8_decode($row["nom_util"]).'_'.utf8_decode($row["prenom_util"]).'.pdf');
+
+header('Location: index.php'); 
