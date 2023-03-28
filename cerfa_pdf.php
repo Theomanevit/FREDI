@@ -5,10 +5,19 @@ session_start();
  */
 require('backend/connectionBdd.php');
 
+$id_nfrais = isset($_GET['id_nfrais']) ? $_GET['id_nfrais'] : '';
+
+
 try {
-    $sql = "SELECT nom_util,prenom_util,adresse,cp,ville,lib_club,adresse_club,cp_club,ville_club,lib_ligue FROM adherant,clubs,utilisateur,ligues WHERE utilisateur.id_util=adherant.id_util AND clubs.id_club=adherant.id_club AND ligues.id_ligue=clubs.id_ligue AND utilisateur.id_util = :id_util";
+    $sql = "SELECT nom_util , prenom_util , adresse , cp , ville , lib_club , adresse_club , cp_club , ville_club , lib_ligue 
+    FROM adherant,clubs,utilisateur,ligues,notefrais 
+    WHERE utilisateur.id_util=adherant.id_util 
+    AND clubs.id_club=adherant.id_club 
+    AND ligues.id_ligue=clubs.id_ligue 
+    AND adherant.id_adherant=notefrais.id_adherant 
+    AND id_nfrais= :id_nfrais";
     $params = array(
-        ":id_util" =>$_SESSION["id_util"]
+        ":id_nfrais" =>$id_nfrais
     );
     $sth = $dbh->prepare($sql);
     $sth->execute($params);
