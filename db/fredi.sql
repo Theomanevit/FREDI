@@ -92,17 +92,13 @@ CREATE TABLE noteFrais(
         date_ordre  Date NOT NULL ,
         num_ordre   Int NOT NULL ,
         id_adherant Int NOT NULL ,
-        id_fisc     Int NOT NULL
+        id_fisc     Int NOT NULL,
+    	isvalid Bool NOT NULL DEFAULT 0
 	,CONSTRAINT noteFrais_PK PRIMARY KEY (id_nfrais)
 
 	,CONSTRAINT noteFrais_adherant_FK FOREIGN KEY (id_adherant) REFERENCES adherant(id_adherant)
 	,CONSTRAINT noteFrais_periodeFiscale0_FK FOREIGN KEY (id_fisc) REFERENCES periodeFiscale(id_fisc)
 )ENGINE=InnoDB;
-
-ALTER TABLE noteFrais
-isvalid Bool NOT NULL 
-CONSTRAINT valeur_par_defaut DEFAULT 0;
-
 
 #------------------------------------------------------------
 # Table: motifDeplacement
@@ -135,4 +131,3 @@ CREATE TABLE ligneFrais(
 	,CONSTRAINT ligneFrais_noteFrais_FK FOREIGN KEY (id_nfrais) REFERENCES noteFrais(id_nfrais)
 	,CONSTRAINT ligneFrais_motifDeplacement0_FK FOREIGN KEY (id_motif) REFERENCES motifDeplacement(id_motif)
 )ENGINE=InnoDB;
-
