@@ -16,10 +16,14 @@ https://trello.com/b/JX7kWf7S/projet-fredi
  
 Le dossier FREDI doit être installé dans le dossier “projets” de XAMPP pour l’adresse suivante : http://localhost/projets/FREDI/index.php .
  
+
+# installation base de donnée et utilisateur :
+
+aller dans le dossier db et copier integrallement le fichier fredi.sql dans l'onglet SQL de phpmyadmin
  
 # installation des données :
 
-allez dans inscription et cliquez sur base de donnée : charger   
+allez dans l'acceuil avec le compte test1 ( admin ) et cliquez sur base de donnée : charger   
  
 # accès des utilisateurs :
 l'adhérent a accès à :
@@ -36,7 +40,11 @@ l' administrateur a accès à :
 
 # API JSON :
 
-URL pour appeler l'API JSON de FREDI : http://localhost/projets/FREDI/api/note_json.php?email=test@gmail.com&password=test
+URL pour appeler l'API JSON de FREDI (controleur): http://localhost/projets/FREDI/api/note_json.php?email=test2@gmail.com&password=test2
+
+URL pour appeler l'API JSON de FREDI (admin): http://localhost/projets/FREDI/api/note_json.php?email=test1@gmail.com&password=test1
+
+URL pour appeler l'API JSON de FREDI (adhérent): http://localhost/projets/FREDI/api/note_json.php?email=test@gmail.com&password=test
 
 
 

@@ -16,7 +16,15 @@ session_start();
 <body>
     <?php include('header.php') ?>
     <h1 class="centre">FREDI : Le site de l'avenir du sport</h1>
-    <!--ajouter des images ou d'autres choses-->
+    <?php 
+        if (isset($_SESSION['isadmin'])) {
+        	echo '<div class="field padding-bottom--24">';
+                echo '<label>Base de données : </label>';
+                echo '<button><a href="backend/compte/parsecsv.php">Charger</a></button>';
+            echo '</div>';
+
+        } 
+    ?>
 </body>
 
 </html>

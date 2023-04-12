@@ -28,10 +28,6 @@ require("backend/inscription/insert_db.php");
             <div class="formbg">
                 <div class="formbg-inner padding-horizontal--48">
                     <form action="inscription.php" method="post">
-                        <div class="field padding-bottom--24">
-                            <label>Base de données : </label>
-                            <button><a href="backend/compte/parsecsv.php">Charger</a></button>
-                        </div>
                         <div  class="field padding-bottom--24">
                             <?php if (isset($messages)) {
                                 echo "<p class='rouge'>" . $messages . "</p>";
