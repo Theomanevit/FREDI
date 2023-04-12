@@ -131,3 +131,9 @@ CREATE TABLE ligneFrais(
 	,CONSTRAINT ligneFrais_noteFrais_FK FOREIGN KEY (id_nfrais) REFERENCES noteFrais(id_nfrais)
 	,CONSTRAINT ligneFrais_motifDeplacement0_FK FOREIGN KEY (id_motif) REFERENCES motifDeplacement(id_motif)
 )ENGINE=InnoDB;
+
+	INSERT INTO utilisateur (id_util, pseudo_util, mdp_util, nom_util, prenom_util, mail_util, iscontrol, isadmin)
+        VALUES
+        (1, 'test2', '$2y$11$Sdif2cIgm6LhSSQ9K8NqmeaetQRB8KJhtvYajmNY8eiLF.OyFhUrS', 'test2', 'test2', 'test2@gmail.com', 1, 0),
+        (2, 'test1', '$2y$11$lN7LI9jbmLWsio1WxzaN.uS9rGdBEfds5AcQMrELWb5dW4zalVaZm', 'test1', 'test1', 'test1@gmail.com', 0, 1),
+        (3, 'test', '$2y$11$Ms671HrjdGyYlO3nLAYa7uYjoKk3v3qbCYWhVoXPU7bG5eo9VfWLK', 'test', 'test', 'test@gmail.com', 0, 0);
