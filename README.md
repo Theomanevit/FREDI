@@ -23,7 +23,7 @@ aller dans le dossier db et copier integrallement le fichier fredi.sql dans l'on
  
 # installation des données :
 
-allez dans l'acceuil avec le compte test1 ( admin ) et cliquez sur base de donnée : charger   
+allez dans l'accueil avec le compte test1 ( admin ) et cliquez sur base de données : charger   
  
 # accès des utilisateurs :
 l'adhérent a accès à :

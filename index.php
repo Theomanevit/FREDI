@@ -20,7 +20,7 @@ session_start();
         if (isset($_SESSION['isadmin'])) {
         	echo '<div class="field padding-bottom--24">';
                 echo '<label>Base de données : </label>';
-                echo '<button><a href="backend/compte/parsecsv.php">Charger</a></button>';
+                echo '<button><a href="backend/compte/parsecsv.php">Charger CSV</a></button>';
             echo '</div>';
 
         } 

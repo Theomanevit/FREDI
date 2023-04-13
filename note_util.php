@@ -80,6 +80,8 @@ try {
                 echo '<td><button><a href="ligne_notes.php?id_nfrais=' . $row['id_nfrais'] . '">afficher ligne</a></button></td>';
                 if($row['isvalid']==0){
                     echo '<td><button><a href="valider_note_frais.php?id_nfrais=' . $row['id_nfrais'] . '">Valider note de frais</a></button></td>';
+                } else {
+                    echo '<td>La note est validée</td>';
                 }
                 echo "</tr>";
             }
