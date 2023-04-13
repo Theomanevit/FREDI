@@ -53,16 +53,14 @@ require('backend/CRUD_ligne_frais/suppr_ligne.php');
                     <div class="field padding-bottom--24">
                         <label>Motif</label>
                         <select name="id_motif" id="id_motif" value=<?php echo $id_motif ?> disabled>
-                            <option value="">Choisissez un motif</option>
-                            <option value="1">Réunion</option>
-                            <option value="2">Compétition régionale</option>
-                            <option value="3">Compétition nationale</option>
-                            <option value="4">Compétition internationnale</option>
-                            <option value="5">Stage</option>
-                            <option value="6">Visite médicale</option>
-                            <option value="7">Oxygénation</option>
-                            <option value="8">Convocation</option>
-                            <option value="9">Formation</option>
+                        <?php foreach($rows_motif as $motif) {
+                                if($motif["id_motif"] == $id_motif) {
+                                    echo "<option selected value='".$motif["id_motif"]."'>".$motif["lib_motif"]."</option>";
+                                } else {
+                                    echo "<option value='".$motif["id_motif"]."'>".$motif["lib_motif"]."</option>";
+                                }
+                            }
+                        ?>
                         </select>
                     </div>
                     <div>

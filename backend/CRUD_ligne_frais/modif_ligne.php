@@ -118,6 +118,11 @@ if ($submit) {
         $sth = $dbh->prepare($sql);
         $sth->execute($params);
         $row = $sth->fetch(PDO::FETCH_ASSOC);
+
+        $sql_motif = "select * from motifdeplacement";
+        $sth = $dbh->prepare($sql_motif);
+        $sth->execute();
+        $rows_motif = $sth->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $ex) {
         die("<p>Erreur lors de la requête SQL : " . $ex->getMessage() . "</p>");
     }
