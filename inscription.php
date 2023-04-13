@@ -60,19 +60,19 @@ require("backend/inscription/insert_db.php");
                         <div class="field padding-bottom--24">
                             <label>Club</label>
                             <select name="club" id="club" required>
-                                <option value="">Choisissez un club</option>
-                                <option value="1">Dojo Burgien</option>
-                                <option value="2">Saint-Denis Dojo</option>
-                                <option value="3">Judo Club Vallée Arbent</option>
-                                <option value="4">Belli Judo</option>
-                                <option value="5">Racing Club Montluel Judo</option>
-                                <option value="6">Centre Arts Martiaux Pondinois</option>
-                                <option value="7">Judo Club Ornex</option>
-                                <option value="8">Dojo Gessien Valserine</option>
-                                <option value="9">Dojo La Vallière</option>
-                                <option value="10">Football club Merville</option>
-                                <option value="11">Football Club Bassin d'Arcachon</option>
-                                <option value="12">Andernos Sport Football Club</option>
+                            <?php
+                            $sql = 'select * from clubs';
+                            try {
+                              $sth = $dbh->prepare($sql);
+                              $sth->execute();
+                              $clubs = $sth->fetchAll(PDO::FETCH_ASSOC);
+                            } catch (PDOException $e) {
+                              die( "<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+                            }
+                            foreach ($clubs as $club) {
+                              echo '<option value="' . $club["id_club"] . '" >' . $club["lib_club"] . '</option>' . PHP_EOL;
+                            }
+                            ?>
                             </select>
                         </div>
                         <div class="field padding-bottom--24">
